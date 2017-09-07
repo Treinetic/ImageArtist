@@ -95,26 +95,41 @@ class Image
         $this->resize($width,$height);
     }
 
-    public function setTextBox(TextBox $textBox,$angle,$x,$y,$draw_rect =false){
+    public function setTextBox(TextBox $textBox,$angle,$x,$y,$v_space = 8, $draw_rect =false){
         /** @var Color $color */
         /** @var Font $font */
         $color = $textBox->getColor();
         $font = $textBox->getFont();
         $clr = imagecolorallocatealpha($this->getResource(), $color->getR(), $color->getG(), $color->getB(), $color->getAlpha());
         $font_path = $font->getPath();
-        imagettftext(
-            $this->getResource(),
-            $textBox->getSize(),
-            $angle,
-            $x,
-            $y,
-            $clr,
-            $font_path,
-            $textBox->getText()
-        );
+
+        $dimensions = imagettfbbox($textBox->getSize(), $angle, $font_path, $textBox->getText());
+        $area_user_rec = $textBox->getWidth() * $textBox->getHeight();
+        $area_dimen_rec = ($dimensions[4] - $dimensions[6]) * ($dimensions[1] - $dimensions[7]);
+
+        $dimensions = imagettfbbox($textBox->getSize(), $angle, $font_path, "A");
+        $char_width = ($dimensions[4] - $dimensions[6]);
+        $char_height = ($dimensions[1] - $dimensions[7]);
+var_dump($dimensions);
+        if($area_user_rec >= $area_dimen_rec){
+            imagettftext($this->getResource(), $textBox->getSize(), $angle, $x, $y, $clr, $font_path, $textBox->getText());
+        }else{
+            var_dump([$textBox->getWidth(),$char_width]);
+            $text = explode("\n", wordwrap($textBox->getText(), $textBox->getWidth()/($char_width-5)));
+            $delta_y = 0;
+            foreach($text as $line) {
+                var_dump(strlen($line));
+                imagettftext($this->getResource(), $textBox->getSize(), $angle, $x, $y + $delta_y, $clr, $font_path, $line);
+                $delta_y = $delta_y+$char_height+$v_space;
+            }
+        }
+
+
+
+
         if($draw_rect){
             $pink = imagecolorallocate($this->getResource(), 255, 105, 180);
-            imagerectangle($this->getResource(), $x, $y, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
+            imagerectangle($this->getResource(), $x, $y-$char_height, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
         }
     }
 

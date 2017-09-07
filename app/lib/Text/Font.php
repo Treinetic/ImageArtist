@@ -16,6 +16,7 @@ class Font
     private $font_path;
 
     public static $CODE2002 = "CODE2002.TTF";
+    public static $ISKOLA_POTA = "iskoola-pota.ttf";
 
     public function __construct($font_path)
     {
