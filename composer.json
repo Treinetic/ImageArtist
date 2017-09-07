@@ -1,0 +1,17 @@
+{
+    "name": "imal-h/gd-helper",
+    "description": "drawing using php gd",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Imal hasaranga",
+            "email": "imaa95@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    }
+}
