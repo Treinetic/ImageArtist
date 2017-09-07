@@ -46,7 +46,7 @@ class Image
         $width = $this->getWidth();
         $height = $this->getHeight();
         $mergeImage = imagecreatetruecolor($width, $height);
-        imagealphablending($mergeImage, false);
+        imagealphablending($mergeImage, true);
         imagesavealpha($mergeImage, true);
         imagecopyresampled($mergeImage, $this->getResource(), 0, 0, 0, 0, $width, $height, $width, $height);
         imagecopyresampled ($mergeImage, $image->getResource(), $pos_x, $pos_y, 0, 0, $width, $height, $image->getWidth(), $image->getHeight());
@@ -96,7 +96,7 @@ class Image
         ob_start();
         imagepng($this->resource);
         $rawImageBytes = ob_get_clean();
-        echo "<body style='background: red'><img src='data:image/png;base64," . base64_encode($rawImageBytes) . "' /></body>";
+        echo "<body style='background: green'><img src='data:image/png;base64," . base64_encode($rawImageBytes) . "' /></body>";
     }
 
     private function getImage($data,$otherInfo)

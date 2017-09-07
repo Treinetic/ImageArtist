@@ -42,6 +42,13 @@ $traingle_two->scale(40);
 $traingle_two->build();
 
 
-$image = $traingle_one->merge($traingle_two,10,10);
+$image = $traingle_one->merge($traingle_two,0,0);
 
-$image->dump();
+$shape = new Shape($image->getResource());
+$shape->pushPresentage(new \App\lib\Node(33,33));
+$shape->pushPresentage(new \App\lib\Node(66,33));
+$shape->pushPresentage(new \App\lib\Node(66,66));
+$shape->pushPresentage(new \App\lib\Node(33,66));
+$shape->build();
+
+$shape->dump();

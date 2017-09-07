@@ -21,12 +21,12 @@ class Shape extends Image
     }
 
 
-    protected function push(Node $node)
+    public function push(Node $node)
     {
         $this->nodes[] = $node;
     }
 
-    protected function pushPresentage(Node $node)
+    public function pushPresentage(Node $node)
     {
         $node->setMetrics("%");
         $this->nodes[] =$node;
@@ -61,86 +61,32 @@ class Shape extends Image
 
     private function resizeCropPolygonImage($srcImage, $width, $height, $points, $numPoints)
     {
+
+        imagealphablending($srcImage, true);
+        imagesavealpha($srcImage, true);
         /*
-           Special thanks to  https://stackoverflow.com/questions/9580239/howto-crop-area-outside-polygon
-           Bryce Siedschlaw : https://stackoverflow.com/users/733547/bryce-siedschlaw
-           From Imal
-           --------------
-         */
-
-        $mergeImage = imagecreatetruecolor($width, $height);
-        imagealphablending($mergeImage, false);
-        imagesavealpha($mergeImage, true);
-        imagecopyresampled($mergeImage, $srcImage, 0, 0, 0, 0, $width, $height, imagesx($srcImage), imagesy($srcImage));
-
-        /******** This is probably the part that you're most interested in *******/
-        // Create the image we will use for the mask of the polygon shape and
-        // fill it with an uncommon color
+         * we are creating a polygon mask and finally we are merging that mask on top of the
+         * source image
+         * */
         $maskPolygon = imagecreate($width, $height);
-        imagealphablending($maskPolygon, false);
-        imagesavealpha($maskPolygon, true);
-        $borderColor = imagecolorallocatealpha($maskPolygon, 255, 255, 255, 0);
-        imagefill($maskPolygon, 0, 0, $borderColor);
-
-        // Add the transparent polygon mask
-        $transparency = imagecolortransparent($maskPolygon, imagecolorallocatealpha($maskPolygon, 255, 255, 255, 0));
-        imagesavealpha($maskPolygon, true);
+        $borderColor = imagecolorallocatealpha($maskPolygon, 255, 255, 255, 127);
+        $transparency = imagecolortransparent($maskPolygon, imagecolorallocatealpha($maskPolygon, 255, 255, 255, 127));
         imagefilledpolygon($maskPolygon, $points, $numPoints, $transparency);
 
         // Apply the mask
-        imagesavealpha($mergeImage, true);
-        imagecopymerge($mergeImage, $maskPolygon, 0, 0, 0, 0, $width, $height, 100);
+        imagecopymerge($srcImage, $maskPolygon, 0, 0, 0, 0, $width, $height, 100);
 
-        /******* Here I am using a custom function to get the outer     *********
-         ******* perimeter of the polygon. I'll add this one in below   ********/
-        // Crop down to just the polygon area
-        $polygonPerimeter = $this->getPolygonCropCorners($points);
-        $polygonX = $polygonPerimeter[0]['min'];
-        $polygonY = $polygonPerimeter[1]['min'];
-        $polygonWidth = $polygonPerimeter[0]['max'] - $polygonPerimeter[0]['min'];
-        $polygonHeight = $polygonPerimeter[1]['max'] - $polygonPerimeter[1]['min'];
-
-        // Create the final image
-        $destImage = imagecreatetruecolor($polygonWidth, $polygonHeight);
-        imagesavealpha($destImage, true);
-        imagealphablending($destImage, true);
-        imagecopy($destImage, $mergeImage,
-            0, 0,
-            $polygonX, $polygonY,
-            $polygonWidth, $polygonHeight);
 
         // Make the the border transparent (we're assuming there's a 2px buffer on all sides)
-        $borderRGB = imagecolorsforindex($destImage, $borderColor);
-        $borderTransparency = imagecolorallocatealpha($destImage, $borderRGB['red'], $borderRGB['green'], $borderRGB['blue'], 127);
-        imagesavealpha($destImage, true);
-        imagealphablending($destImage, true);
-        imagefill($destImage, 0, 0, $borderTransparency);
+        $borderRGB = imagecolorsforindex($srcImage, $borderColor);
+        $borderTransparency = imagecolorallocatealpha($srcImage, $borderRGB['red'], $borderRGB['green'], $borderRGB['blue'], 127);
+        imagesavealpha($srcImage, true);
+        imagealphablending($srcImage, true);
+        imagefill($srcImage, 0, 0, $borderTransparency);
 
         imagedestroy($maskPolygon);
-        imagedestroy($srcImage);
-        return $destImage;
+        return $srcImage;
 
     }
 
-    private function getPolygonCropCorners($points)
-    {
-        $perimeter = array();
-
-        for ($i = 0; $i < count($points); $i++) {
-            $axisIndex = $i % 2;
-
-            if (count($perimeter) < $axisIndex) {
-                $perimeter[] = array();
-            }
-
-            $min = isset($perimeter[$axisIndex]['min']) ? $perimeter[$axisIndex]['min'] : $points[$i];
-            $max = isset($perimeter[$axisIndex]['max']) ? $perimeter[$axisIndex]['max'] : $points[$i];
-
-            // Adding an extra pixel of buffer
-            $perimeter[$axisIndex]['min'] = min($min, $points[$i] - 2);
-            $perimeter[$axisIndex]['max'] = max($max, $points[$i] + 2);
-        }
-
-        return $perimeter;
-    }
 }
