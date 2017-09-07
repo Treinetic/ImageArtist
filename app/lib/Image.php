@@ -1,6 +1,9 @@
 <?php
 
 namespace App\lib;
+use App\lib\Text\Color;
+use App\lib\Text\Font;
+use App\lib\Text\TextBox;
 
 /**
  * Created by PhpStorm.
@@ -90,6 +93,29 @@ class Image
         $width = $this->getWidth() * $presentage/100;
         $height = $this->getHeight() * $presentage/100;
         $this->resize($width,$height);
+    }
+
+    public function setTextBox(TextBox $textBox,$angle,$x,$y,$draw_rect =false){
+        /** @var Color $color */
+        /** @var Font $font */
+        $color = $textBox->getColor();
+        $font = $textBox->getFont();
+        $clr = imagecolorallocatealpha($this->getResource(), $color->getR(), $color->getG(), $color->getB(), $color->getAlpha());
+        $font_path = $font->getPath();
+        imagettftext(
+            $this->getResource(),
+            $textBox->getSize(),
+            $angle,
+            $x,
+            $y,
+            $clr,
+            $font_path,
+            $textBox->getText()
+        );
+        if($draw_rect){
+            $pink = imagecolorallocate($this->getResource(), 255, 105, 180);
+            imagerectangle($this->getResource(), $x, $y, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
+        }
     }
 
     public function dump(){

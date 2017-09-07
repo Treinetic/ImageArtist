@@ -16,6 +16,9 @@
 
 
 use App\lib\Shape;
+use App\lib\Text\TextBox;
+use App\lib\Text\Color;
+use App\lib\Text\Font;
 
 require('vendor/autoload.php');
 
@@ -44,11 +47,20 @@ $traingle_two->build();
 
 $image = $traingle_one->merge($traingle_two,0,0);
 
-$shape = new Shape($image->getResource());
-$shape->pushPresentage(new \App\lib\Node(33,33));
-$shape->pushPresentage(new \App\lib\Node(66,33));
-$shape->pushPresentage(new \App\lib\Node(66,66));
-$shape->pushPresentage(new \App\lib\Node(33,66));
-$shape->build();
+//$shape = new Shape($image->getResource());
+//$shape->pushPresentage(new \App\lib\Node(33,33));
+//$shape->pushPresentage(new \App\lib\Node(66,33));
+//$shape->pushPresentage(new \App\lib\Node(66,66));
+//$shape->pushPresentage(new \App\lib\Node(33,66));
+//$shape->build();
 
-$shape->dump();
+
+
+$text_box = new TextBox(100,100);
+$text_box->setColor(Color::getColor(Color::$WHITE));
+$text_box->setFont(Font::getFont(Font::$CODE2002));
+$text_box->setText("Hellow world");
+$text_box->setSize(18);
+
+$image->setTextBox($text_box,0,100,100,true);
+$image->dump();
