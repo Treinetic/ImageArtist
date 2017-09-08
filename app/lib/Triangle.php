@@ -9,7 +9,7 @@
 namespace Treinetic\ImageArtist\lib;
 
 
-class Triangle extends Shape
+class Triangle extends PolygonShape
 {
 
     public function setPointOne($x,$y,$presentage = false){

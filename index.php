@@ -9,7 +9,7 @@
 //require_once "lib/Shape.php";
 //require_once "lib/Image.php";
 //require_once "lib/Node.php";
-use Treinetic\ImageArtist\lib\Shape;
+use Treinetic\ImageArtist\lib\PolygonShape;
 use Treinetic\ImageArtist\lib\Text\TextBox;
 use Treinetic\ImageArtist\lib\Text\Color;
 use Treinetic\ImageArtist\lib\Text\Font;

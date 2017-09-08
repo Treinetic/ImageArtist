@@ -9,10 +9,10 @@
 namespace Treinetic\ImageArtist\lib\Overlays;
 
 
-use Treinetic\ImageArtist\lib\Shape;
+use Treinetic\ImageArtist\lib\PolygonShape;
 use Treinetic\ImageArtist\lib\Text\Color;
 
-class Overlay extends Shape
+class Overlay extends PolygonShape
 {
 
     public function __construct($width,$height,Color $color)
