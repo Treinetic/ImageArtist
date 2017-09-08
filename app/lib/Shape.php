@@ -34,58 +34,71 @@ class Shape extends Image
 
     public function build()
     {
-        $points = $this->nodeToArray();
+        $buffer = 100;
+        $width = $this->getWidth();
+        $height = $this->getHeight();
+
+        $points = $this->nodeToArray($buffer);
         $num_points = count($this->nodes);
-        $image = $this->getResource();
-        $image = $this->resizeCropPolygonImage($image, $this->getWidth(), $this->getHeight(), $points, $num_points);
+        $image = $this->resizeCropPolygonImage($this->getResource(), $width,$height, $points, $num_points,$buffer);
         $this->setResource($image);
+        $image = $this->crop($buffer,$buffer,$width,$height);
+        $this->setResource($image->getResource());
     }
 
-    public function nodeToArray()
+    public function nodeToArray($buffer)
     {
         $aray = [];
         $width = $this->getWidth();
         $height = $this->getHeight();
         /* @var Node $node */
         foreach ($this->nodes as $node) {
+            $x = 0;
+            $y = 0;
             if($node->getMetrics() == "%"){
-                $aray[] = ($node->getX() * $width)/100.0;
-                $aray[] = ($node->getY() * $height)/100.0;
+                $x = ($node->getX() * $width)/100.0;
+                $y = ($node->getY() * $height)/100.0;
             }else{
-                $aray[] = $node->getX();
-                $aray[] = $node->getY();
+                $x = $node->getX();
+                $y = $node->getY();
             }
+            $aray[] = $x+$buffer;
+            $aray[] = $y+$buffer;
         }
         return $aray;
     }
 
-    private function resizeCropPolygonImage($srcImage, $width, $height, $points, $numPoints)
+    private function resizeCropPolygonImage($srcImage, $width, $height, $points, $numPoints,$buffer = 2)
     {
-
-        imagealphablending($srcImage, true);
-        imagesavealpha($srcImage, true);
+        $bufferdWidth = $width+($buffer * 2);
+        $bufferdHeight = $height+($buffer * 2);
         /*
          * we are creating a polygon mask and finally we are merging that mask on top of the
          * source image
          * */
-        $maskPolygon = imagecreate($width, $height);
-        $borderColor = imagecolorallocatealpha($maskPolygon, 255, 255, 255, 127);
-        $transparency = imagecolortransparent($maskPolygon, imagecolorallocatealpha($maskPolygon, 255, 255, 255, 127));
+        $maskPolygon = imagecreate($bufferdWidth, $bufferdHeight);
+        imagesavealpha( $maskPolygon, true );
+        $borderColor = imagecolorallocate($maskPolygon, 1, 254, 255); // fill it with an uncommon color so that we can later delete it
+        $transparency = imagecolortransparent($maskPolygon, imagecolorallocate($maskPolygon, 0, 0, 0));
         imagefilledpolygon($maskPolygon, $points, $numPoints, $transparency);
 
+        $copy = imagecreatetruecolor($bufferdWidth, $bufferdHeight);
+        $borderColor2 = imagecolorallocate($copy, 1, 254, 255);
+        imagesavealpha( $copy, true );
+        imagefill($copy, 0, 0, $borderColor2);
+        imagecopy($copy, $srcImage, $buffer, $buffer, 0, 0, $width, $height);
         // Apply the mask
-        imagecopymerge($srcImage, $maskPolygon, 0, 0, 0, 0, $width, $height, 100);
-
+        imagecopymerge($copy, $maskPolygon, 0, 0, 0, 0,$bufferdWidth, $bufferdHeight, 100);
 
         // Make the the border transparent (we're assuming there's a 2px buffer on all sides)
-        $borderRGB = imagecolorsforindex($srcImage, $borderColor);
-        $borderTransparency = imagecolorallocatealpha($srcImage, $borderRGB['red'], $borderRGB['green'], $borderRGB['blue'], 127);
-        imagesavealpha($srcImage, true);
-        imagealphablending($srcImage, true);
-        imagefill($srcImage, 0, 0, $borderTransparency);
+        $borderRGB = imagecolorsforindex($copy, $borderColor);
+        $borderTransparency = imagecolorallocatealpha($copy, $borderRGB['red'], $borderRGB['green'], $borderRGB['blue'], 127);
+        imagefill($copy, 0, 0, $borderTransparency);
 
         imagedestroy($maskPolygon);
-        return $srcImage;
+        imagedestroy($srcImage);
+
+        return $copy;
 
     }
 
