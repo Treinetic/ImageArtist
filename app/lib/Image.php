@@ -24,6 +24,15 @@ class Image
         });
     }
 
+//    public function __destruct()
+//    {
+//        if (is_resource($this->getResource()))
+//        {
+//            imagedestroy($this->getResource());
+//        }
+//    }
+
+
     public function getResource()
     {
         return $this->resource;

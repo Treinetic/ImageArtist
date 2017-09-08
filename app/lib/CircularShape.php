@@ -16,13 +16,12 @@ class CircularShape extends Image implements Shapable
 
 
 
-    private $dst_img;
-    private $dst_w;
-    private $dst_h;
-
+    private $major_axis;// ellipse width
+    private $minor_axis;// ellipse height
 
 
     /**
+     *
      * CircleShape constructor.
      */
     public function __construct($image)
@@ -30,68 +29,56 @@ class CircularShape extends Image implements Shapable
         parent::__construct($image);
 
 
-        $this->dst_w = $this->getWidth();
-        $this->dst_h = $this->getHeight();
+        $this->major_axis = $this->getWidth();
+        $this->minor_axis = $this->getHeight();
 
     }
-
 
 
     public function build()
     {
+
         $this->cropCircle();
     }
 
 
-
-
-    public function __destruct()
+    public function setAxises($major_axis, $minor_axis )
     {
-        if (is_resource($this->getResource()))
-        {
-            imagedestroy($this->getResource());
-        }
-    }
-
-
-    private function reset()
-    {
-        if (is_resource(($this->dst_img)))
-        {
-            imagedestroy($this->dst_img);
-        }
-        $this->dst_img = imagecreatetruecolor($this->dst_w, $this->dst_h);
-        imagecopy($this->dst_img, $this->getResource(), 0, 0, 0, 0, $this->dst_w, $this->dst_h);
+        $this->major_axis = $major_axis;
+        $this->minor_axis = $minor_axis;
         return $this;
-    }
-
-    public function setAxises($dstWidth, $dstHeight)
-    {
-        $this->dst_w = $dstWidth;
-        $this->dst_h = $dstHeight;
-        return $this->reset();
     }
 
     private function cropCircle()
     {
         // Intializes destination image
-        $this->reset();
+
+
+        $dst_img = imagecreatetruecolor($this->major_axis, $this->minor_axis);
+        imagecopy($dst_img, $this->getResource(), 0, 0, 0, 0, $this->major_axis, $this->minor_axis);
+
+
 
         // Create a black image with a transparent ellipse, and merge with destination
-        $mask = imagecreatetruecolor($this->dst_w, $this->dst_h);
+        $mask = imagecreatetruecolor($this->major_axis, $this->minor_axis);
         $maskTransparent = imagecolorallocate($mask, 255, 0, 255);
         imagecolortransparent($mask, $maskTransparent);
-        imagefilledellipse($mask, $this->dst_w / 2, $this->dst_h / 2, $this->dst_w, $this->dst_h, $maskTransparent);
-        imagecopymerge($this->dst_img, $mask, 0, 0, 0, 0, $this->dst_w, $this->dst_h, 100);
+        imagefilledellipse($mask, $this->major_axis / 2, $this->minor_axis / 2, $this->major_axis, $this->minor_axis, $maskTransparent);
+        imagecopymerge($dst_img, $mask, 0, 0, 0, 0, $this->major_axis, $this->minor_axis, 100);
 
         // Fill each corners of destination image with transparency
-        $dstTransparent = imagecolorallocate($this->dst_img, 255, 0, 255);
-        imagefill($this->dst_img, 0, 0, $dstTransparent);
-        imagefill($this->dst_img, $this->dst_w - 1, 0, $dstTransparent);
-        imagefill($this->dst_img, 0, $this->dst_h - 1, $dstTransparent);
-        imagefill($this->dst_img, $this->dst_w - 1, $this->dst_h - 1, $dstTransparent);
-        imagecolortransparent($this->dst_img, $dstTransparent);
-        $this->setResource($this->dst_img);
+        $dstTransparent = imagecolorallocate($dst_img, 255, 0, 255);
+        imagefill($dst_img, 0, 0, $dstTransparent);
+        imagefill($dst_img, $this->major_axis - 1, 0, $dstTransparent);
+        imagefill($dst_img, 0, $this->minor_axis - 1, $dstTransparent);
+        imagefill($dst_img, $this->major_axis - 1, $this->minor_axis - 1, $dstTransparent);
+        imagecolortransparent($dst_img, $dstTransparent);
+
+        // destroy old resource
+        imagedestroy($this->getResource());
+
+        // set new resource created
+        $this->setResource($dst_img);
         return $this;
     }
 
