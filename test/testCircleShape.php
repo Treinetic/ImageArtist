@@ -15,7 +15,7 @@ $circileShape=new \test\CircleShape("ttt.jpg");
 //$circileShape->dump();
 //$circileShape->display();
 
-$circileShape->crop()->display();
+
 $circileShape->build();
 $circileShape->dump();
 //$circileShape->save("res.png",IMAGETYPE_PNG);

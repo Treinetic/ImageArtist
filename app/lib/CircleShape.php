@@ -6,7 +6,7 @@
  * Time: 10:44
  */
 
-namespace test;
+namespace App\lib;
 //namespace App\test\circle;
 
 use App\lib\Image;
