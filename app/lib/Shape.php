@@ -6,10 +6,10 @@
  * Time: 11:15 AM
  */
 
-namespace App\lib;
+namespace Treinetic\ImageArtist\lib;
 
 
-class Shape extends Image
+class Shape extends Image implements Shapable
 {
 
     private $nodes = [];

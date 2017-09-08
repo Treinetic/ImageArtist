@@ -6,10 +6,10 @@
  * Time: 6:35 PM
  */
 
-namespace App\lib\Text;
+namespace Treinetic\ImageArtist\lib\Text;
 
 
-use App\lib\AssetManager\Asset;
+use Treinetic\ImageArtist\lib\AssetManager\Asset;
 
 class Font
 {

@@ -6,7 +6,7 @@
  * Time: 3:02 PM
  */
 
-namespace App\lib;
+namespace Treinetic\ImageArtist\lib;
 
 
 class Triangle extends Shape

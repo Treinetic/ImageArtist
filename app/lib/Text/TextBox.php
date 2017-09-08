@@ -1,6 +1,6 @@
 <?php
 
-namespace App\lib\Text;
+namespace Treinetic\ImageArtist\lib\Text;
 
 /**
  * Created by PhpStorm.

@@ -6,12 +6,12 @@
  * Time: 10:44
  */
 
-namespace App\lib;
-//namespace App\test\circle;
+namespace Treinetic\ImageArtist\lib;
 
-use App\lib\Image;
 
-class CircleShape extends Image
+use Treinetic\ImageArtist\lib\Image;
+
+class CircleShape extends Image implements Shapable
 {
 
 
