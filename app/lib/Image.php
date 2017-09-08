@@ -1,6 +1,9 @@
 <?php
 
 namespace App\lib;
+use App\lib\Text\Color;
+use App\lib\Text\Font;
+use App\lib\Text\TextBox;
 
 /**
  * Created by PhpStorm.
@@ -49,7 +52,7 @@ class Image
         imagealphablending($mergeImage, true);
         imagesavealpha($mergeImage, true);
         imagecopyresampled($mergeImage, $this->getResource(), 0, 0, 0, 0, $width, $height, $width, $height);
-        imagecopyresampled ($mergeImage, $image->getResource(), $pos_x, $pos_y, 0, 0, $width, $height, $image->getWidth(), $image->getHeight());
+        imagecopy($mergeImage,$image->getResource(),$pos_x,$pos_y,0,0,$width, $height); //($mergeImage, $image->getResource(), $pos_x, $pos_y, 0, 0, $width, $height, $image->getWidth(), $image->getHeight());
         return new Image($mergeImage);
     }
 
@@ -80,9 +83,13 @@ class Image
         $this->resize($width,$height);
     }
 
-    public function resizeWithHeight($height){
-        $ratio = $height / $this->getHeight();
-        $width = $this->getWidth() * $ratio;
+    public function resize($width,$height){
+        $new_image = imagecreatetruecolor($width, $height);
+        imagecopyresampled($new_image, $this->resource, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+        $this->resource = $new_image;
+    }
+
+    public function resizeWidthHeight($width,$height){
         $this->resize($width,$height);
     }
 
@@ -90,6 +97,18 @@ class Image
         $width = $this->getWidth() * $presentage/100;
         $height = $this->getHeight() * $presentage/100;
         $this->resize($width,$height);
+    }
+
+    public function setTextBox(TextBox $textBox,$x,$y,$draw_rect =false){
+        $textBox->write($this->getResource(),$x,$y,$textBox->getWidth(),$textBox->getHeight());
+        if($draw_rect){
+            $pink = imagecolorallocate($this->getResource(), 255, 105, 180);
+            imagerectangle($this->getResource(), $x, $y, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
+        }
+    }
+
+    public function crop($x,$y,$width,$height){
+        return new Image(imagecrop($this->getResource(), ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]));
     }
 
     public function dump(){
@@ -121,9 +140,5 @@ class Image
         }
     }
 
-    private function resize($width,$height){
-        $new_image = imagecreatetruecolor($width, $height);
-        imagecopyresampled($new_image, $this->resource, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
-        $this->resource = $new_image;
-    }
+
 }
