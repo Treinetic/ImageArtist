@@ -107,6 +107,10 @@ class Image
         }
     }
 
+    public function crop($x,$y,$width,$height){
+        return new Image(imagecrop($this->getResource(), ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]));
+    }
+
     public function dump(){
         ob_start();
         imagepng($this->resource);
