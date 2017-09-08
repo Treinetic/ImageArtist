@@ -52,7 +52,7 @@ class Image
         imagealphablending($mergeImage, true);
         imagesavealpha($mergeImage, true);
         imagecopyresampled($mergeImage, $this->getResource(), 0, 0, 0, 0, $width, $height, $width, $height);
-        imagecopyresampled ($mergeImage, $image->getResource(), $pos_x, $pos_y, 0, 0, $width, $height, $image->getWidth(), $image->getHeight());
+        imagecopy($mergeImage,$image->getResource(),$pos_x,$pos_y,0,0,$width, $height); //($mergeImage, $image->getResource(), $pos_x, $pos_y, 0, 0, $width, $height, $image->getWidth(), $image->getHeight());
         return new Image($mergeImage);
     }
 
@@ -83,9 +83,13 @@ class Image
         $this->resize($width,$height);
     }
 
-    public function resizeWithHeight($height){
-        $ratio = $height / $this->getHeight();
-        $width = $this->getWidth() * $ratio;
+    public function resize($width,$height){
+        $new_image = imagecreatetruecolor($width, $height);
+        imagecopyresampled($new_image, $this->resource, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
+        $this->resource = $new_image;
+    }
+
+    public function resizeWidthHeight($width,$height){
         $this->resize($width,$height);
     }
 
@@ -95,41 +99,11 @@ class Image
         $this->resize($width,$height);
     }
 
-    public function setTextBox(TextBox $textBox,$angle,$x,$y,$v_space = 8, $draw_rect =false){
-        /** @var Color $color */
-        /** @var Font $font */
-        $color = $textBox->getColor();
-        $font = $textBox->getFont();
-        $clr = imagecolorallocatealpha($this->getResource(), $color->getR(), $color->getG(), $color->getB(), $color->getAlpha());
-        $font_path = $font->getPath();
-
-        $dimensions = imagettfbbox($textBox->getSize(), $angle, $font_path, $textBox->getText());
-        $area_user_rec = $textBox->getWidth() * $textBox->getHeight();
-        $area_dimen_rec = ($dimensions[4] - $dimensions[6]) * ($dimensions[1] - $dimensions[7]);
-
-        $dimensions = imagettfbbox($textBox->getSize(), $angle, $font_path, "A");
-        $char_width = ($dimensions[4] - $dimensions[6]);
-        $char_height = ($dimensions[1] - $dimensions[7]);
-var_dump($dimensions);
-        if($area_user_rec >= $area_dimen_rec){
-            imagettftext($this->getResource(), $textBox->getSize(), $angle, $x, $y, $clr, $font_path, $textBox->getText());
-        }else{
-            var_dump([$textBox->getWidth(),$char_width]);
-            $text = explode("\n", wordwrap($textBox->getText(), $textBox->getWidth()/($char_width-5)));
-            $delta_y = 0;
-            foreach($text as $line) {
-                var_dump(strlen($line));
-                imagettftext($this->getResource(), $textBox->getSize(), $angle, $x, $y + $delta_y, $clr, $font_path, $line);
-                $delta_y = $delta_y+$char_height+$v_space;
-            }
-        }
-
-
-
-
+    public function setTextBox(TextBox $textBox,$x,$y,$draw_rect =false){
+        $textBox->write($this->getResource(),$x,$y,$textBox->getWidth(),$textBox->getHeight());
         if($draw_rect){
             $pink = imagecolorallocate($this->getResource(), 255, 105, 180);
-            imagerectangle($this->getResource(), $x, $y-$char_height, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
+            imagerectangle($this->getResource(), $x, $y, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
         }
     }
 
@@ -162,9 +136,5 @@ var_dump($dimensions);
         }
     }
 
-    private function resize($width,$height){
-        $new_image = imagecreatetruecolor($width, $height);
-        imagecopyresampled($new_image, $this->resource, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
-        $this->resource = $new_image;
-    }
+
 }
