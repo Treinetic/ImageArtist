@@ -7,7 +7,7 @@
  */
 
 
-use App\lib\CircleShape;
+use Treinetic\ImageArtist\lib\CircleShape;
 
 require('vendor/autoload.php');
 
