@@ -9,7 +9,7 @@
 namespace Treinetic\ImageArtist\lib;
 
 
-class Shape extends Image implements Shapable
+class PolygonShape extends Image implements Shapable
 {
 
     private $nodes = [];

@@ -11,16 +11,15 @@ namespace Treinetic\ImageArtist\lib;
 
 use Treinetic\ImageArtist\lib\Image;
 
-class CircleShape extends Image implements Shapable
+class CircularShape extends Image implements Shapable
 {
 
 
-    private $src_img;
-    private $src_w;
-    private $src_h;
+
     private $dst_img;
     private $dst_w;
     private $dst_h;
+
 
 
     /**
@@ -30,9 +29,7 @@ class CircleShape extends Image implements Shapable
     {
         parent::__construct($image);
 
-        $this->src_img = $this->getResource();
-        $this->src_w = $this->getWidth();
-        $this->src_h = $this->getHeight();
+
         $this->dst_w = $this->getWidth();
         $this->dst_h = $this->getHeight();
 
@@ -56,32 +53,26 @@ class CircleShape extends Image implements Shapable
         }
     }
 
-    public function display()
-    {
-        header("Content-type: image/png");
-        imagepng($this->getResource());
-        return $this;
-    }
 
-    public function reset()
+    private function reset()
     {
         if (is_resource(($this->dst_img)))
         {
             imagedestroy($this->dst_img);
         }
         $this->dst_img = imagecreatetruecolor($this->dst_w, $this->dst_h);
-        imagecopy($this->dst_img, $this->src_img, 0, 0, 0, 0, $this->dst_w, $this->dst_h);
+        imagecopy($this->dst_img, $this->getResource(), 0, 0, 0, 0, $this->dst_w, $this->dst_h);
         return $this;
     }
 
-    public function size($dstWidth, $dstHeight)
+    public function setAxises($dstWidth, $dstHeight)
     {
         $this->dst_w = $dstWidth;
         $this->dst_h = $dstHeight;
         return $this->reset();
     }
 
-    public function cropCircle()
+    private function cropCircle()
     {
         // Intializes destination image
         $this->reset();
