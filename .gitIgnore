@@ -2,4 +2,5 @@ vendor
 vendor/**
 .idea
 .idea/**
+test
 test/**
