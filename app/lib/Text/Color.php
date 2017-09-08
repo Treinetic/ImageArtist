@@ -6,7 +6,7 @@
  * Time: 6:15 PM
  */
 
-namespace App\lib\Text;
+namespace Treinetic\ImageArtist\lib\Text;
 
 
 class Color

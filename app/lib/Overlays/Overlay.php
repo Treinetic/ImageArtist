@@ -6,11 +6,11 @@
  * Time: 7:43 PM
  */
 
-namespace App\lib\Overlays;
+namespace Treinetic\ImageArtist\lib\Overlays;
 
 
-use App\lib\Shape;
-use App\lib\Text\Color;
+use Treinetic\ImageArtist\lib\Shape;
+use Treinetic\ImageArtist\lib\Text\Color;
 
 class Overlay extends Shape
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\lib;
-use App\lib\Text\Color;
-use App\lib\Text\Font;
-use App\lib\Text\TextBox;
+namespace Treinetic\ImageArtist\lib;
+use Treinetic\ImageArtist\lib\Text\Color;
+use Treinetic\ImageArtist\lib\Text\Font;
+use Treinetic\ImageArtist\lib\Text\TextBox;
 
 /**
  * Created by PhpStorm.

@@ -1,5 +1,5 @@
 <?php
-namespace App\lib\AssetManager;
+namespace Treinetic\ImageArtist\lib\AssetManager;
 /**
  * Created by PhpStorm.
  * User: imal365

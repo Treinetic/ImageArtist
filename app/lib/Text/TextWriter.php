@@ -6,10 +6,10 @@
  * Time: 6:12 PM
  */
 
-namespace App\lib\Text;
+namespace Treinetic\ImageArtist\lib\Text;
 
 
-use App\lib\Image;
+use Treinetic\ImageArtist\lib\Image;
 
 class TextWriter
 {
