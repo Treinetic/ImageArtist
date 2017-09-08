@@ -63,3 +63,21 @@ $text_box->setSize(18);
 
 $image->setTextBox($text_box,50, 50,  false);
 $image->dump();
+
+$purpleOverlay = new Overlay(1024,768,Color::getColor(Color::$PURPLE));
+$pinkOverLay = new Overlay(1024,768,Color::getColor(Color::$DARKPINK));
+
+$traingle_one = new \App\lib\Triangle($purpleOverlay);
+$traingle_one->setPointOne(0, 100, true);
+$traingle_one->setPointTwo(100, 100, true);
+$traingle_one->setPointThree(100, 0, true);
+$traingle_one->build();
+//
+//$traingle_two = new \App\lib\Triangle($purpleOverlay);
+//$traingle_two->setPointOne(0, 100, true);
+//$traingle_two->setPointTwo(100, 100, true);
+//$traingle_two->setPointThree(100, 0, true);
+//$traingle_two->build();
+
+//$image = $traingle_two->merge($traingle_one, 0, 0);
+$traingle_one->dump();

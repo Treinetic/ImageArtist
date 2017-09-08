@@ -17,6 +17,8 @@ class Color
     private $Alpha;
 
     public static $WHITE = "WHITE";
+    public static $PURPLE = "PURPLE";
+    public static $DARKPINK = "DARKPINK";
 
     public function __construct($R,$G,$B,$Alpha = 0)
     {
@@ -30,6 +32,12 @@ class Color
         switch ($color_const){
             case self::$WHITE:
                 return new Color(255,255,255);
+                break;
+            case self::$PURPLE:
+                return new Color(128,0,128);
+                break;
+            case self::$DARKPINK:
+                return new Color(255,20,147);
                 break;
         }
     }
