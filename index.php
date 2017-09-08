@@ -9,12 +9,12 @@
 //require_once "lib/Shape.php";
 //require_once "lib/Image.php";
 //require_once "lib/Node.php";
-use App\lib\Shape;
-use App\lib\Text\TextBox;
-use App\lib\Text\Color;
-use App\lib\Text\Font;
-use App\lib\Overlays\Overlay;
-use App\lib\Image;
+use Treinetic\ImageArtist\lib\Shape;
+use Treinetic\ImageArtist\lib\Text\TextBox;
+use Treinetic\ImageArtist\lib\Text\Color;
+use Treinetic\ImageArtist\lib\Text\Font;
+use Treinetic\ImageArtist\lib\Overlays\Overlay;
+use Treinetic\ImageArtist\lib\Image;
 require('vendor/autoload.php');
 
 /** @var $image Image $traingle_one */
@@ -25,7 +25,7 @@ require('vendor/autoload.php');
  * |/
  *
  * */
-$traingle_one = new \App\lib\Triangle("./images.jpeg");
+$traingle_one = new \Treinetic\ImageArtist\lib\Triangle("./images.jpeg");
 $traingle_one->setPointOne(0, 0, true);
 $traingle_one->setPointTwo(0, 100, true);
 $traingle_one->setPointThree(100, 0, true);
@@ -33,7 +33,7 @@ $traingle_one->scale(40);
 $traingle_one->build();
 
 
-$traingle_two = new \App\lib\Triangle("./image2.jpg");
+$traingle_two = new \Treinetic\ImageArtist\lib\Triangle("./image2.jpg");
 $traingle_two->setPointOne(0, 100, true);
 $traingle_two->setPointTwo(100, 100, true);
 $traingle_two->setPointThree(100, 0, true);
@@ -62,13 +62,13 @@ $image->setTextBox($text_box,50, 50,  false);
 $image->dump();
 
 
-$traingle_one = new \App\lib\Triangle(new Overlay(1024,768,Color::getColor(Color::$PURPLE)));
+$traingle_one = new \Treinetic\ImageArtist\lib\Triangle(new Overlay(1024,768,Color::getColor(Color::$PURPLE)));
 $traingle_one->setPointOne(0, 100, true);
 $traingle_one->setPointTwo(100, 100, true);
 $traingle_one->setPointThree(100, 0, true);
 $traingle_one->build();
 
-$traingle_two = new \App\lib\Triangle(new Overlay(1024,768,Color::getColor(Color::$DARKPINK)));
+$traingle_two = new \Treinetic\ImageArtist\lib\Triangle(new Overlay(1024,768,Color::getColor(Color::$DARKPINK)));
 $traingle_two->setPointOne(0, 0, true);
 $traingle_two->setPointTwo(0, 100, true);
 $traingle_two->setPointThree(100, 0, true);
