@@ -9,7 +9,8 @@
 namespace Treinetic\ImageArtist\lib\Overlays;
 
 
-use Treinetic\ImageArtist\lib\PolygonShape;
+
+use Treinetic\ImageArtist\lib\Shapes\PolygonShape;
 use Treinetic\ImageArtist\lib\Text\Color;
 
 class Overlay extends PolygonShape

@@ -6,7 +6,7 @@
  * Time: 11:20 AM
  */
 
-namespace Treinetic\ImageArtist\lib;
+namespace Treinetic\ImageArtist\lib\Commons;
 
 
 class Node

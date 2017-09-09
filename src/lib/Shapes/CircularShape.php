@@ -6,7 +6,7 @@
  * Time: 10:44
  */
 
-namespace Treinetic\ImageArtist\lib;
+namespace Treinetic\ImageArtist\lib\Shapes;
 
 
 use Treinetic\ImageArtist\lib\Image;
