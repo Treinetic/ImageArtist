@@ -120,6 +120,9 @@ class Image
         return new Image(imagecrop($this->getResource(), ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]));
     }
 
+    /*
+     * This method is debugging purposes only
+     * */
     public function dump(){
         ob_start();
         imagepng($this->resource);

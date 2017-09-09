@@ -29,15 +29,11 @@ class PolygonShape extends Image implements Shapable
         $this->nodes[] = $node;
     }
 
-    public function pushPresentage(Node $node)
-    {
-        $node->setMetrics("%");
-        $this->nodes[] =$node;
-    }
-
     public function build()
     {
-        $this->setDefaults();
+        if(count($this->nodes) == 0){
+            $this->setDefaults();
+        }
         $buffer = 100;
         $width = $this->getWidth();
         $height = $this->getHeight();
@@ -59,7 +55,7 @@ class PolygonShape extends Image implements Shapable
         foreach ($this->nodes as $node) {
             $x = 0;
             $y = 0;
-            if($node->getMetrics() == "%"){
+            if($node->getMetrics() == Node::$PERCENTAGE_METRICS){
                 $x = ($node->getX() * $width)/100.0;
                 $y = ($node->getY() * $height)/100.0;
             }else{
@@ -70,6 +66,14 @@ class PolygonShape extends Image implements Shapable
             $aray[] = $y+$buffer;
         }
         return $aray;
+    }
+
+    protected function point($x,$y,$presentage = false){
+        $node = new Node($x,$y);
+        if($presentage){
+            $node->setMetrics(Node::$PERCENTAGE_METRICS);
+        }
+        $this->push($node);
     }
 
     private function resizeCropPolygonImage($srcImage, $width, $height, $points, $numPoints,$buffer = 2)

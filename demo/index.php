@@ -19,6 +19,17 @@ require('../vendor/autoload.php');
 
 /** @var $image Image $traingle_one */
 
+
+$traingle_x = new \Treinetic\ImageArtist\lib\Shapes\Triangle("./images.jpeg");
+$traingle_x->scale(40);
+$traingle_x->build();
+$traingle_x->dump();
+
+
+$square = new \Treinetic\ImageArtist\lib\Shapes\Square("./images.jpeg");
+$square->scale(40);
+$square->build();
+$square->dump();
 /*
  * |--/
  * | /
@@ -26,17 +37,17 @@ require('../vendor/autoload.php');
  *
  * */
 $traingle_one = new \Treinetic\ImageArtist\lib\Shapes\Triangle("./images.jpeg");
-$traingle_one->setPointOne(0, 0, true);
-$traingle_one->setPointTwo(0, 100, true);
-$traingle_one->setPointThree(100, 0, true);
+$traingle_one->setPointA(0, 0, true);
+$traingle_one->setPointB(0, 100, true);
+$traingle_one->setPointC(100, 0, true);
 $traingle_one->scale(40);
 $traingle_one->build();
 
 
 $traingle_two = new \Treinetic\ImageArtist\lib\Shapes\Triangle("./image2.jpg");
-$traingle_two->setPointOne(0, 100, true);
-$traingle_two->setPointTwo(100, 100, true);
-$traingle_two->setPointThree(100, 0, true);
+$traingle_two->setPointA(0, 100, true);
+$traingle_two->setPointB(100, 100, true);
+$traingle_two->setPointC(100, 0, true);
 $traingle_two->resize($traingle_one->getWidth(),$traingle_one->getHeight());
 $traingle_two->build();
 
@@ -63,15 +74,15 @@ $image->dump();
 
 
 $traingle_one = new \Treinetic\ImageArtist\lib\Shapes\Triangle(new Overlay(1024,768,Color::getColor(Color::$PURPLE)));
-$traingle_one->setPointOne(0, 100, true);
-$traingle_one->setPointTwo(100, 100, true);
-$traingle_one->setPointThree(100, 0, true);
+$traingle_one->setPointA(0, 100, true);
+$traingle_one->setPointB(100, 100, true);
+$traingle_one->setPointC(100, 0, true);
 $traingle_one->build();
 
 $traingle_two = new \Treinetic\ImageArtist\lib\Shapes\Triangle(new Overlay(1024,768,Color::getColor(Color::$DARKPINK)));
-$traingle_two->setPointOne(0, 0, true);
-$traingle_two->setPointTwo(0, 100, true);
-$traingle_two->setPointThree(100, 0, true);
+$traingle_two->setPointA(0, 0, true);
+$traingle_two->setPointB(0, 100, true);
+$traingle_two->setPointC(100, 0, true);
 $traingle_two->build();
 
 $image = $traingle_two->merge($traingle_one, 0, 0);

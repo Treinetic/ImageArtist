@@ -13,5 +13,5 @@ interface Shapable
 {
     public function build();
 
-    function setDefaults();
+    public function setDefaults();
 }
