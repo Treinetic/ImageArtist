@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1487f9c0-1dd9-4de0-ae9f-540be7daa6ff" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/image2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/images.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/index2.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ttt.jpg" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/AssetManager/Asset.php" afterPath="$PROJECT_DIR$/src/lib/AssetManager/Asset.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/CircularShape.php" afterPath="$PROJECT_DIR$/src/lib/Shapes/CircularShape.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Image.php" afterPath="$PROJECT_DIR$/src/lib/Image.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Node.php" afterPath="$PROJECT_DIR$/src/lib/Commons/Node.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Overlays/Overlay.php" afterPath="$PROJECT_DIR$/src/lib/Overlays/Overlay.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/PolygonShape.php" afterPath="$PROJECT_DIR$/src/lib/Shapes/PolygonShape.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Shapable.php" afterPath="$PROJECT_DIR$/src/lib/Shapes/Shapable.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Text/Color.php" afterPath="$PROJECT_DIR$/src/lib/Text/Color.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Text/Font.php" afterPath="$PROJECT_DIR$/src/lib/Text/Font.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Text/TextBox.php" afterPath="$PROJECT_DIR$/src/lib/Text/TextBox.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Text/TextWriter.php" afterPath="$PROJECT_DIR$/src/lib/Text/TextWriter.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/lib/Triangle.php" afterPath="$PROJECT_DIR$/src/lib/Shapes/Triangle.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/resources/Fonts/NotoSansSinhala-Bold.ttf" afterPath="$PROJECT_DIR$/src/resources/Fonts/NotoSansSinhala-Bold.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/resources/Fonts/NotoSansSinhala-Regular.ttf" afterPath="$PROJECT_DIR$/src/resources/Fonts/NotoSansSinhala-Regular.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/resources/Fonts/NotoSerif-Bold.ttf" afterPath="$PROJECT_DIR$/src/resources/Fonts/NotoSerif-Bold.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/resources/Fonts/NotoSerif-BoldItalic.ttf" afterPath="$PROJECT_DIR$/src/resources/Fonts/NotoSerif-BoldItalic.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/resources/Fonts/NotoSerif-Italic.ttf" afterPath="$PROJECT_DIR$/src/resources/Fonts/NotoSerif-Italic.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/resources/Fonts/NotoSerif-Regular.ttf" afterPath="$PROJECT_DIR$/src/resources/Fonts/NotoSerif-Regular.ttf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/image2.jpg" afterPath="$PROJECT_DIR$/demo/image2.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/images.jpeg" afterPath="$PROJECT_DIR$/demo/images.jpeg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/demo/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/index2.php" afterPath="$PROJECT_DIR$/demo/index2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-    </list>
+    <list default="true" id="1487f9c0-1dd9-4de0-ae9f-540be7daa6ff" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,20 +98,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ImageArtist" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ImageArtist" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ImageArtist" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -262,12 +219,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12833000" />
+    <option name="totallyTimeSpent" value="12904000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1617" height="1062" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21988527" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21988527" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -275,7 +232,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
