@@ -12,4 +12,6 @@ namespace Treinetic\ImageArtist\lib;
 interface Shapable
 {
     public function build();
+
+    function setDefaults();
 }
