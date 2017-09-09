@@ -34,6 +34,7 @@ class PolygonShape extends Image implements Shapable
 
     public function build()
     {
+        $this->setDefaults();
         $buffer = 100;
         $width = $this->getWidth();
         $height = $this->getHeight();
@@ -102,4 +103,8 @@ class PolygonShape extends Image implements Shapable
 
     }
 
+    function setDefaults()
+    {
+        //there is no default configuration for this
+    }
 }
