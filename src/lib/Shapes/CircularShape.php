@@ -9,6 +9,7 @@
 namespace Treinetic\ImageArtist\lib\Shapes;
 
 
+use Treinetic\ImageArtist\lib\Commons\Node;
 use Treinetic\ImageArtist\lib\Image;
 
 class CircularShape extends Image implements Shapable
@@ -32,7 +33,11 @@ class CircularShape extends Image implements Shapable
 
     public function build()
     {
-        $this->setDefaults();
+        // by putting the conditins here as well gives users easily override setDefaults method
+        // without worrynig about the conditions
+        if(empty($this->major_axis) || empty($this->minor_axis) || empty($this->center)){
+            $this->setDefaults();
+        }
         $this->cropCircle();
     }
 
@@ -88,7 +93,7 @@ class CircularShape extends Image implements Shapable
     }
 
     function setDefaults(){
-        if(empty($this->major_axis) && empty($this->minor_axis)){
+        if(empty($this->major_axis) || empty($this->minor_axis)){
             $this->major_axis = $this->getWidth()/2;
             $this->minor_axis = $this->getHeight()/2;
         }

@@ -16,9 +16,13 @@ class Node
     private $y;
     private $metrics;
 
+    public static $PERCENTAGE_METRICS = "%";
+    public static $PIXEL_METRICS = "px";
+
     /**
      * @return mixed
      */
+
     public function getMetrics()
     {
         return $this->metrics;
@@ -36,6 +40,7 @@ class Node
     {
         $this->x = $x;
         $this->y = $y;
+        $this->metrics = self::$PIXEL_METRICS;
     }
 
     /**

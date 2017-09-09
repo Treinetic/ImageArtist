@@ -1,17 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: imal365
- * Date: 9/7/17
- * Time: 3:02 PM
+ * User: imal
+ * Date: 9/10/17
+ * Time: 4:00 AM
  */
 
 namespace Treinetic\ImageArtist\lib\Shapes;
 
 
-use Treinetic\ImageArtist\lib\Commons\Node;
-
-class Triangle extends PolygonShape
+class Square extends PolygonShape
 {
 
     public function setPointA($x, $y, $presentage = false){
@@ -26,13 +24,16 @@ class Triangle extends PolygonShape
         $this->point($x,$y,$presentage);
     }
 
-    public function setDefaults()
-    {
-        $this->setPointA(50,0,true);
-        $this->setPointB(100,100, true);
-        $this->setPointC(0,100,true);
+    public function setPointD($x, $y, $presentage = false){
+        $this->point($x,$y,$presentage);
     }
 
-
+    public function setDefaults()
+    {
+        $this->setPointA(0,0,true);
+        $this->setPointB(100,0, true);
+        $this->setPointC(100,100,true);
+        $this->setPointD(0,100,true);
+    }
 
 }
