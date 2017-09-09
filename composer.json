@@ -1,5 +1,5 @@
 {
-    "name": "imal-h/gd-helper",
+    "name": "treinetic/imageartist",
     "description": "drawing using php gd",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Treinetic\\ImageArtist\\": "app"
+            "Treinetic\\ImageArtist\\": "src"
         }
     }
 }

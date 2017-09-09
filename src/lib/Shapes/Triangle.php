@@ -6,8 +6,10 @@
  * Time: 3:02 PM
  */
 
-namespace Treinetic\ImageArtist\lib;
+namespace Treinetic\ImageArtist\lib\Shapes;
 
+
+use Treinetic\ImageArtist\lib\Commons\Node;
 
 class Triangle extends PolygonShape
 {

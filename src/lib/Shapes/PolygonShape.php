@@ -6,8 +6,11 @@
  * Time: 11:15 AM
  */
 
-namespace Treinetic\ImageArtist\lib;
+namespace Treinetic\ImageArtist\lib\Shapes;
 
+
+use Treinetic\ImageArtist\lib\Commons\Node;
+use Treinetic\ImageArtist\lib\Image;
 
 class PolygonShape extends Image implements Shapable
 {

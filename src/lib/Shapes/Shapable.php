@@ -6,7 +6,7 @@
  * Time: 14:58
  */
 
-namespace Treinetic\ImageArtist\lib;
+namespace Treinetic\ImageArtist\lib\Shapes;
 
 
 interface Shapable
