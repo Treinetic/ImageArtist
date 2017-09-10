@@ -1,4 +1,4 @@
-# ImageArtist 0.0.2-alpha
+# ImageArtist 0.1.0-alpha-rc
 ImageArtist is a php gd Wrapper which makes Image manipulation insanely easy, we introduce ImageArtist as Photoshop for php 
 
 This project is an initiative of [Treinetic (Pvt) Ltd](http://www.treinetic.com), Sri Lanka.
