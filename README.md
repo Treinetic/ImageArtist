@@ -85,6 +85,8 @@ $triangle->build();
 </div>
 </p>
 
+ ![Triangle Result](/../images/img/triangle.png?raw=true )
+
 * Create **Create Custom Shape**, lets see how we can make a nice Pentagon
 
 ```php
