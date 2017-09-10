@@ -151,7 +151,7 @@ class Image
      * */
     public function dump(){
         $url = $this->getBase64URL(IMAGETYPE_PNG);
-        echo "<body style='background: green' ><img src='$url' /></body>";
+        echo "<body  ><img src='$url' /></body>";
     }
 
     private function getImage($data)

@@ -103,8 +103,60 @@ $pentagon->build();
 </div>
 </p>
 
-* Lets **Merge These two** 
+* Lets **Merge Two Triangles** 
 
+```php
+$tr1 = new Triangle("./city.jpg");
+$tr1->scale(60);
+$tr1->setPointA(0,0,true);
+$tr1->setPointB(100,0,true);
+$tr1->setPointC(100,100,true);
+$tr1->build();
+
+$tr2 = new Triangle("./morning.jpeg");
+$tr2->scale(60);
+$tr2->setPointA(0,0,true);
+$tr2->setPointB(0,100,true);
+$tr2->setPointC(100,100,true);
+$tr2->build();
+
+$tr1->resize($tr1->getWidth(),$tr2->getHeight());
+
+$img = $tr1->merge($tr2,0,0);
+$img->scale(70);
+```
+<p align="center">
+<div style="width:400px" >
+  ![Triangle Result](/../images/img/merge.png?raw=true )
+</div>
+</p>
+
+* Let's Do Some Photoshop Shall we ? **Create a Facebook cover**
+ 
+```php
+/* Let's add an overlay to this */
+$overlay = new Overlay($img->getWidth(),$img->getHeight(),new Color(0,0,0,80));
+$img->merge($overlay,0,0);
+/* hmmm.. lets add a photo */
+$circle = new CircularShape("./person.jpg");
+$circle->build();
+$img = $img->merge($circle,($img->getWidth()-$circle->getWidth())/2,($img->getHeight() - $circle->getHeight())/2);
+/* I think I should add some Text */
+$textBox = new TextBox(310,40);
+$textBox->setColor(Color::getColor(Color::$WHITE));
+$textBox->setFont(Font::getFont(Font::$NOTOSERIF_REGULAR));
+$textBox->setSize(20);
+$textBox->setMargin(2);
+$textBox->setText("We Are Team Treinetic");
+$img->setTextBox($textBox,($img->getWidth()-$textBox->getWidth())/2,$img->getHeight()* (5/7));
+
+$img->dump(); //development purposes only
+```
+<p align="center">
+<div >
+  ![Triangle Result](/../images/img/cover.png?raw=true )
+</div>
+</p>
 
 
 ## Change log
