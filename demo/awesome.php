@@ -10,6 +10,8 @@
 use \Treinetic\ImageArtist\lib\Shapes\Triangle;
 use \Treinetic\ImageArtist\lib\Shapes\PolygonShape;
 use \Treinetic\ImageArtist\lib\Commons\Node;
+use \Treinetic\ImageArtist\lib\Text\Color;
+use \Treinetic\ImageArtist\lib\Overlays\Overlay;
 
 require('../vendor/autoload.php');
 
@@ -42,12 +44,11 @@ $pentagon->build();
  * Merge images
  * */
 
-$img1 = new \Treinetic\ImageArtist\lib\Image($pentagon->getResource());
-$img1->dump();
+$img1 = new Overlay(400,300, Color::getColor(Color::$DARKPINK));
+$img2 = new Overlay(200,200, Color::getColor(Color::$PURPLE));
 
-$img2 = new \Treinetic\ImageArtist\lib\Image($triangle->getResource());
+$img1->dump();
 $img2->dump();
 
-$img4 = $img1->merge($img2,0,0);
-
-$img4->dump();
+$img3 = $img1->merge($img2,-$img2->getWidth(),-$img2->getHeight());
+$img3->dump();
