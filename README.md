@@ -68,7 +68,7 @@ $image->merge(new Image("https://drive.google.com/file/d/0B3zA54ciopGBN3FkanVkbS
 Lets do some things that matter
 
 * Create a shape, for creating a custom shape you can directly use Either `CircularShape.php` or `PolygonShape.php` however if you are looking for a standard shape which is not yet created then still you can use either `CircularShape.php` or `PolygonShape.php` to create them but we encorage you to contribute to the project by adding that shape
-* Create **Triangle**
+* Create **Triangle** ( There are few other Pre made shapes for your use )
 
 ```php
 $triangle = new Triangle("./city.jpg");
@@ -78,7 +78,33 @@ $triangle->setPointB(80,20,true);
 $triangle->setPointC(50,80,true);
 $triangle->build();
 ```
-![Result](/../images/img/triangle.png?raw=true)
+
+<p align="center">
+<div style="width:400px" >
+  ![Triangle Result](/../images/img/triangle.png?raw=true )
+</div>
+</p>
+
+* Create **Create Custom Shape**, lets see how we can make a nice Pentagon
+
+```php
+$pentagon = new PolygonShape("./morning.jpeg");
+$pentagon->scale(60);
+$pentagon->push(new Node(50,0, Node::$PERCENTAGE_METRICS));
+$pentagon->push(new Node(75,50, Node::$PERCENTAGE_METRICS));
+$pentagon->push(new Node(62.5,100, Node::$PERCENTAGE_METRICS));
+$pentagon->push(new Node(37.5,100, Node::$PERCENTAGE_METRICS));
+$pentagon->push(new Node(25,50, Node::$PERCENTAGE_METRICS));
+$pentagon->build();
+```
+<p align="center">
+<div style="width:400px" >
+  ![Triangle Result](/../images/img/polygon.png?raw=true )
+</div>
+</p>
+
+* Lets **Merge These two** 
+
 
 
 ## Change log

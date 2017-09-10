@@ -36,11 +36,11 @@ class Node
         $this->metrics = $metrics;
     }
 
-    public function __construct($x,$y)
+    public function __construct($x,$y, $metrics = null)
     {
         $this->x = $x;
         $this->y = $y;
-        $this->metrics = self::$PIXEL_METRICS;
+        $this->metrics = is_null($metrics) ? self::$PIXEL_METRICS : $metrics;
     }
 
     /**

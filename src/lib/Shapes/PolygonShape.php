@@ -10,6 +10,7 @@ namespace Treinetic\ImageArtist\lib\Shapes;
 
 
 use Treinetic\ImageArtist\lib\Commons\Node;
+use Treinetic\ImageArtist\lib\Commons\Rectangle;
 
 class PolygonShape extends Shape implements Shapable
 {
@@ -40,8 +41,9 @@ class PolygonShape extends Shape implements Shapable
         $points = $this->nodeToArray($buffer);
         $num_points = count($this->nodes);
         $image = $this->resizeCropPolygonImage($this->getResource(), $width,$height, $points, $num_points,$buffer);
-        $this->setResource($image);
-        $image = imagecrop($this->getResource(), ['x' => $buffer, 'y' => $buffer, 'width' => $width, 'height' => $height]);
+        $boundingRectangle = Rectangle::findBoundingRectangle($this->nodeToFixedNodeArray(0));
+        $image = imagecrop($image, ['x' => $buffer+$boundingRectangle->getA()->getX(), 'y' => $buffer+$boundingRectangle->getA()->getY(), 'width' => $boundingRectangle->getWidth(), 'height' => $boundingRectangle->getHeight()]);
+        imagedestroy($this->getResource());
         $this->setResource($image);
     }
 
@@ -52,17 +54,23 @@ class PolygonShape extends Shape implements Shapable
         $height = $this->getHeight();
         /* @var Node $node */
         foreach ($this->nodes as $node) {
-            $x = 0;
-            $y = 0;
-            if($node->getMetrics() == Node::$PERCENTAGE_METRICS){
-                $x = ($node->getX() * $width)/100.0;
-                $y = ($node->getY() * $height)/100.0;
-            }else{
-                $x = $node->getX();
-                $y = $node->getY();
-            }
-            $aray[] = $x+$buffer;
-            $aray[] = $y+$buffer;
+            $node = $this->fixNode($width,$height,$node);
+            $aray[] = $node->getX()+$buffer;
+            $aray[] = $node->getY()+$buffer;
+        }
+        return $aray;
+    }
+
+    public function nodeToFixedNodeArray($buffer){
+        $aray = [];
+        $width = $this->getWidth();
+        $height = $this->getHeight();
+        /* @var Node $node */
+        foreach ($this->nodes as $node) {
+            $node = $this->fixNode($width,$height,$node);
+            $node->setX($node->getX()+$buffer);
+            $node->setY($node->getY()+$buffer);
+            $aray[] = $node;
         }
         return $aray;
     }
@@ -80,7 +88,7 @@ class PolygonShape extends Shape implements Shapable
         $bufferdWidth = $width+($buffer * 2);
         $bufferdHeight = $height+($buffer * 2);
         /*
-         * we are creating a polygon mask and finally we are merging that mask on top of the
+         * we are creating a polygon.png mask and finally we are merging that mask on top of the
          * source image
          * */
         $maskPolygon = imagecreate($bufferdWidth, $bufferdHeight);
@@ -103,10 +111,22 @@ class PolygonShape extends Shape implements Shapable
         imagefill($copy, 0, 0, $borderTransparency);
 
         imagedestroy($maskPolygon);
-        imagedestroy($srcImage);
 
         return $copy;
 
+    }
+
+    private function fixNode($width,$height,Node $node){
+        $x = 0;
+        $y = 0;
+        if($node->getMetrics() == Node::$PERCENTAGE_METRICS){
+            $x = ($node->getX() * $width)/100.0;
+            $y = ($node->getY() * $height)/100.0;
+        }else{
+            $x = $node->getX();
+            $y = $node->getY();
+        }
+       return new Node($x,$y);
     }
 
     function setDefaults()
