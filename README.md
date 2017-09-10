@@ -149,7 +149,7 @@ $img->dump(); //development purposes only
 ```
 
 <p align="center">
-<img width="400" src="/Treinetic/ImageArtist/raw/images/img/cover.png?raw=true"/>
+<img width="400" src="/../images/img/cover.png?raw=true"/>
 </p>
 
 
