@@ -1,6 +1,8 @@
 <?php
 
 namespace Treinetic\ImageArtist\lib;
+use Treinetic\ImageArtist\lib\Commons\Node;
+use Treinetic\ImageArtist\lib\Commons\Rectangle;
 use Treinetic\ImageArtist\lib\Text\Color;
 use Treinetic\ImageArtist\lib\Text\Font;
 use Treinetic\ImageArtist\lib\Text\TextBox;
@@ -15,13 +17,10 @@ class Image
 {
 
     private $resource;
-    private $type;
 
     public function __construct($image)
     {
-        $this->resource = $this->getImage($image,function ($type) {
-            $this->type = $type;
-        });
+        $this->resource = $this->getImage($image);
     }
 
     public function __destruct()
@@ -55,15 +54,28 @@ class Image
     }
 
     public function merge(Image $image,$pos_x, $pos_y){
-        $width = $this->getWidth();
-        $height = $this->getHeight();
-        $mergeImage = imagecreatetruecolor($width, $height);
-        imagealphablending($mergeImage, true);
-        imagesavealpha($mergeImage, true);
-        imagecopyresampled($mergeImage, $this->getResource(), 0, 0, 0, 0, $width, $height, $width, $height);
-        imagecopy($mergeImage,$image->getResource(),$pos_x,$pos_y,0,0,$width, $height); //($mergeImage, $image->getResource(), $pos_x, $pos_y, 0, 0, $width, $height, $image->getWidth(), $image->getHeight());
-        imagedestroy($this->getResource());
-        $this->setResource($mergeImage);
+        $currentImageBoundry = new Rectangle(new Node(0,0),new Node($this->getWidth(),$this->getHeight()));
+        $secondImageAfterPlacedBoundry = new Rectangle(new Node($pos_x,$pos_y), new Node($image->getWidth()+$pos_x,$image->getHeight()+$pos_y));
+
+        if($currentImageBoundry->isFullyOutsideOf($secondImageAfterPlacedBoundry)){
+            imagesavealpha($this->getResource(),true);
+            imagesavealpha($image->getResource(),true);
+            imagecopy($this->getResource(), $image->getResource(), $pos_x, $pos_y, 0, 0, $image->getWidth(), $image->getHeight());
+        }else{
+            $boundryRectangle = Rectangle::createBoundryRectangle($currentImageBoundry,$secondImageAfterPlacedBoundry);
+            $currentImageBoundry = $boundryRectangle->createRelativeRectangle($currentImageBoundry);
+            $secondImageAfterPlacedBoundry = $boundryRectangle->createRelativeRectangle($secondImageAfterPlacedBoundry);
+
+            $copy = imagecreatetruecolor($boundryRectangle->getWidth(), $boundryRectangle->getHeight());
+            imagealphablending($copy,false);
+            imagesavealpha($copy,true);
+            imagecopy($copy, $this->getResource(), $currentImageBoundry->getA()->getX(), $currentImageBoundry->getA()->getY(), 0, 0, $this->getWidth(), $this->getHeight());
+            imagecopy($copy, $image->getResource(), $secondImageAfterPlacedBoundry->getA()->getX(), $secondImageAfterPlacedBoundry->getA()->getY(), 0, 0, $this->getWidth(), $this->getHeight());
+            imagedestroy($this->getResource());
+            $this->setResource($copy);
+        }
+
+
         return $this;
     }
 
@@ -117,7 +129,7 @@ class Image
     }
 
     public function resize($width,$height){
-        $new_image = imagecreatetruecolor($width, $height);
+        $new_image = $this->createTransparentTemplate($this->resource,$width,$height);
         imagecopyresampled($new_image, $this->resource, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
         $this->resource = $new_image;
     }
@@ -141,15 +153,14 @@ class Image
      * */
     public function dump(){
         $url = $this->getBase64URL(IMAGETYPE_PNG);
-        echo "<body ><img src='$url' /></body>";
+        echo "<body style='background: green' ><img src='$url' /></body>";
     }
 
-    private function getImage($data,$otherInfo)
+    private function getImage($data)
     {
         if (is_string($data)) {
             $info = getimagesize($data);
             $type = $info[2];
-            $otherInfo($type);
             if ($type == IMAGETYPE_JPEG) {
                 return imagecreatefromjpeg($data);
             } else if ($type == IMAGETYPE_GIF) {
@@ -157,14 +168,26 @@ class Image
             } else {
                 return imagecreatefrompng($data);
             }
-        } else if ($data instanceof Image) {
-            $type = $data->getType();
-            $otherInfo($type);
-            $copy = imagecreatetruecolor($data->getWidth(), $data->getHeight());
-            return imagecopy($copy, $data->getResource(), 0, 0, 0, 0, $data->getWidth(), $data->getHeight());
         } else {
-            return $data;
+            $resource = $data;
+            if ($data instanceof Image) {
+                $resource = $data->getResource();
+            }
+            $width = imagesx($resource);
+            $height =imagesy($resource);
+            $copy = $this->createTransparentTemplate($resource,$width,$height);
+            imagecopy($copy,$resource , 0, 0, 0, 0, $width, $height);
+            return $copy;
         }
+    }
+
+    private function createTransparentTemplate($resource,$width,$height){
+        imagesavealpha($resource, true);
+        $copy = imagecreatetruecolor($width,$height);
+        $color = imagecolorallocatealpha($copy, 0, 0, 0, 127);
+        imagefill($copy, 0, 0, $color);
+        imagesavealpha($copy, true);
+        return $copy;
     }
 
 
