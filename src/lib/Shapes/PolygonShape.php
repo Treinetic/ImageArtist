@@ -10,9 +10,8 @@ namespace Treinetic\ImageArtist\lib\Shapes;
 
 
 use Treinetic\ImageArtist\lib\Commons\Node;
-use Treinetic\ImageArtist\lib\Image;
 
-class PolygonShape extends Image implements Shapable
+class PolygonShape extends Shape implements Shapable
 {
 
     private $nodes = [];
@@ -42,8 +41,8 @@ class PolygonShape extends Image implements Shapable
         $num_points = count($this->nodes);
         $image = $this->resizeCropPolygonImage($this->getResource(), $width,$height, $points, $num_points,$buffer);
         $this->setResource($image);
-        $image = $this->crop($buffer,$buffer,$width,$height);
-        $this->setResource($image->getResource());
+        $image = imagecrop($this->getResource(), ['x' => $buffer, 'y' => $buffer, 'width' => $width, 'height' => $height]);
+        $this->setResource($image);
     }
 
     public function nodeToArray($buffer)
