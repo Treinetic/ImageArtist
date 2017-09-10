@@ -22,6 +22,7 @@ class TextWriter
 
     public function __construct()
     {
+        $this->setAngle(0);
     }
 
     /**
