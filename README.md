@@ -78,7 +78,7 @@ $triangle->setPointB(80,20,true);
 $triangle->setPointC(50,80,true);
 $triangle->build();
 ```
-![Result](/../images/triangle.png?raw=true)
+![Result](/../images/img/triangle.png?raw=true)
 
 
 ## Change log
