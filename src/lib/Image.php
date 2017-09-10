@@ -67,14 +67,12 @@ class Image
             $secondImageAfterPlacedBoundry = $boundryRectangle->createRelativeRectangle($secondImageAfterPlacedBoundry);
 
             $copy = imagecreatetruecolor($boundryRectangle->getWidth(), $boundryRectangle->getHeight());
-            imagealphablending($copy,false);
-            imagesavealpha($copy,true);
-            imagecopy($copy, $this->getResource(), $currentImageBoundry->getA()->getX(), $currentImageBoundry->getA()->getY(), 0, 0, $this->getWidth(), $this->getHeight());
-            imagecopy($copy, $image->getResource(), $secondImageAfterPlacedBoundry->getA()->getX(), $secondImageAfterPlacedBoundry->getA()->getY(), 0, 0, $this->getWidth(), $this->getHeight());
+            $template = $this->createTransparentTemplate($copy,$boundryRectangle->getWidth(),$boundryRectangle->getHeight());
+            imagecopy($template, $this->getResource(), $currentImageBoundry->getA()->getX(), $currentImageBoundry->getA()->getY(), 0, 0, $this->getWidth(), $this->getHeight());
+            imagecopy($template, $image->getResource(), $secondImageAfterPlacedBoundry->getA()->getX(), $secondImageAfterPlacedBoundry->getA()->getY(), 0, 0, $image->getWidth(), $image->getHeight());
             imagedestroy($this->getResource());
-            $this->setResource($copy);
+            $this->setResource($template);
         }
-
 
         return $this;
     }
