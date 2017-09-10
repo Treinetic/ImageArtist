@@ -17,22 +17,18 @@ $ composer require treinetic/imageartist
 
 ## Usage ( Let's Dive In )
 
-###Very Basics
+### Very Basics
 
-* Load Image, Mostely of the Classes Extends the Image class so if you know how to load an Image then you know how to use most of the library classes
+* Load Image, Most of the Classes Extends the Image class so if you know how to load an Image then you know how to use most of the library classes
 
 ```php
-
 $image = new Image("./morning.jpeg");
-
 ```
 **Note :** Remember to import ( use ) the class first, see demo folder for more complete code.
 
 * Image Resizing
 
 ```php
-
-
 $image->scale(40); //scales the image 40%
 $image->scaleToHeight(1024); //scales the image keeping height 1024
 $image->scaleToWidth(1024); //scales the image keeping width 1024
@@ -47,7 +43,7 @@ $new_wdith = $image->getWidth();
 $new_height = $image->getHeight();
 ```
 
-* Change Format, Save to Disk
+* Change Format/ Save to Disk
 ```php
 $image->convertTo(IMAGETYPE_PNG);
 $image->save("./newImage.jpg",IMAGETYPE_PNG);
@@ -61,14 +57,14 @@ $base64URL = $image->getBase64URL();
     to keep the idea of Shape Consistant
  */
 $image->crop(100,100,300,300);
-$image->merge(new Image("https://drive.google.com/file/d/0B3zA54ciopGBN3FkanVkbS1sdk0/view?usp=sharing"),10,10);
+$image->merge(new Image("./city.jpg"),10,10);
 ```
 
-###Awesome Stuff
-Lets do some things that matter
+### Awesome Stuff
+**Lets do some things that matter**
 
-* Create a shape, for creating a custom shape you can directly use Either `CircularShape.php` or `PolygonShape.php` however if you are looking for a standard shape which is not yet created then still you can use either `CircularShape.php` or `PolygonShape.php` to create them but we encorage you to contribute to the project by adding that shape
-* Create **Triangle** ( There are few other Pre made shapes for your use )
+* **Create a shape**, for creating a custom shape you can directly use Either `CircularShape.php` or `PolygonShape.php` however if you are looking for a standard shape which is not yet existing then still you can use either `CircularShape.php` or `PolygonShape.php` to create them but we encorage you to contribute to the project by adding those shape
+* Lets Create a **Triangle** ( There are few other Pre made shapes for your use )
 
 ```php
 $triangle = new Triangle("./city.jpg");
