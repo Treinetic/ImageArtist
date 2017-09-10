@@ -12,7 +12,7 @@ PHP 5.0 >
 
 The package can be installed via composer:
 ``` bash
-$ composer require treinetic/imageartist
+$ composer require treinetic/imageartist 0.1.0-alpha
 ```
 
 ## Usage ( Let's Dive In )
