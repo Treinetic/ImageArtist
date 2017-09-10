@@ -1,5 +1,13 @@
 # Changelog
 
+# 0.1.0-alpha Released - 2017-08-10
+0.1.0 alpha release with lot of code optimizations and more hidden bug fixes, this include 
+- Image merge function is now supoorting negative cordinates
+- PolygonShape.php build method was not shrinking to the shape size bug fixed.
+- Rectangle.php helper was added wrapping some linear algebric logic to support image croping and boundary calculations
+- Square Shape added ( but it may get renamed soon )
+
+
 # 0.1.0-alpha-rc1
 0.1.0 alpha candidate is now progressing, more focused on code stability and build more functionality ontop of the current core libraries
 
