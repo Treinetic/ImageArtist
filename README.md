@@ -123,7 +123,7 @@ $img->scale(70);
 ```
 
 <p align="center">
-<img width="400" src="/../images/img/merge.png"/>
+<img src="/../images/img/merge.png"/>
 </p>
 
 * Let's Do Some Photoshop Shall we ? **Create a Facebook cover**
@@ -149,7 +149,7 @@ $img->dump(); //development purposes only
 ```
 
 <p align="center">
-<img width="400" src="/../images/img/cover.png"/>
+<img src="/../images/img/cover.png"/>
 </p>
 
 
