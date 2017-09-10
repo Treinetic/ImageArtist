@@ -10,9 +10,8 @@ namespace Treinetic\ImageArtist\lib\Shapes;
 
 
 use Treinetic\ImageArtist\lib\Commons\Node;
-use Treinetic\ImageArtist\lib\Image;
 
-class CircularShape extends Image implements Shapable
+class CircularShape extends Shape implements Shapable
 {
 
 

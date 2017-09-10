@@ -1,17 +1,36 @@
 {
-    "name": "treinetic/imageartist",
-    "description": "drawing using php gd",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Imal hasaranga",
-            "email": "imaa95@gmail.com"
-        }
-    ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "Treinetic\\ImageArtist\\": "src"
-        }
+  "name": "treinetic/imageartist",
+  "description": "ImageArtist is a php gd Wrapper which makes Image manipulation insanely easy, we introduce ImageArtist as Photoshop for php",
+  "keywords": [
+    "GD Made Easy",
+    "PHP GD Wrapper",
+    "Easy GD Wrapper",
+    "Image Shape crop",
+    "Image merge",
+    "scale image",
+    "image to base64",
+    "write text on image"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Imal hasaranga",
+      "email": "imaa95@gmail.com"
     }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "scrutinizer/ocular": "~1.1"
+  },
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Treinetic\\ImageArtist\\": "src"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
 }

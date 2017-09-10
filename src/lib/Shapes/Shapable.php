@@ -9,6 +9,8 @@
 namespace Treinetic\ImageArtist\lib\Shapes;
 
 
+use Treinetic\ImageArtist\lib\Image;
+
 interface Shapable
 {
     public function build();
