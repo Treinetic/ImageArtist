@@ -80,12 +80,8 @@ $triangle->build();
 ```
 
 <p align="center">
-<div style="width:400px" >
-  ![Triangle Result](/../images/img/triangle.png?raw=true )
-</div>
+  <img width="400" src="/Treinetic/ImageArtist/raw/images/img/triangle.png?raw=true"/>
 </p>
-
- ![Triangle Result](/../images/img/triangle.png?raw=true )
 
 * Create **Create Custom Shape**, lets see how we can make a nice Pentagon
 
@@ -100,9 +96,7 @@ $pentagon->push(new Node(25,50, Node::$PERCENTAGE_METRICS));
 $pentagon->build();
 ```
 <p align="center">
-<div style="width:400px" >
-  <img src="/../images/img/polygon.png?raw=true"/>
-</div>
+<img width="400" src="/Treinetic/ImageArtist/raw/images/img/polygon.png?raw=true"/>
 </p>
 
 * Lets **Merge Two Triangles** 
@@ -127,10 +121,9 @@ $tr1->resize($tr1->getWidth(),$tr2->getHeight());
 $img = $tr1->merge($tr2,0,0);
 $img->scale(70);
 ```
+
 <p align="center">
-<div style="width:400px" >
-  ![Triangle Result](/../images/img/merge.png?raw=true )
-</div>
+<img width="400" src="/Treinetic/ImageArtist/raw/images/img/merge.png?raw=true"/>
 </p>
 
 * Let's Do Some Photoshop Shall we ? **Create a Facebook cover**
@@ -154,10 +147,9 @@ $img->setTextBox($textBox,($img->getWidth()-$textBox->getWidth())/2,$img->getHei
 
 $img->dump(); //development purposes only
 ```
+
 <p align="center">
-<div >
-  <img src="/../images/img/cover.png?raw=true"/>
-</div>
+<img width="400" src="/Treinetic/ImageArtist/raw/images/img/cover.png?raw=true"/>
 </p>
 
 
