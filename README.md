@@ -99,7 +99,7 @@ $pentagon->build();
 ```
 <p align="center">
 <div style="width:400px" >
-  ![Triangle Result](/../images/img/polygon.png?raw=true )
+  <img src="/../images/img/polygon.png?raw=true"/>
 </div>
 </p>
 
@@ -154,7 +154,7 @@ $img->dump(); //development purposes only
 ```
 <p align="center">
 <div >
-  ![Triangle Result](/../images/img/cover.png?raw=true )
+  <img src="/../images/img/cover.png?raw=true"/>
 </div>
 </p>
 
