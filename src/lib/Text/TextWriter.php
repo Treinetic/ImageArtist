@@ -10,6 +10,7 @@ namespace Treinetic\ImageArtist\lib\Text;
 
 
 use Treinetic\ImageArtist\lib\Image;
+use Treinetic\ImageArtist\lib\Text\Write\GDWritingStrategy;
 use Treinetic\ImageArtist\lib\Text\Write\WriteFactory;
 use Treinetic\ImageArtist\lib\Text\Write\WritingStrategy;
 
@@ -27,10 +28,14 @@ class TextWriter
     /** @var  WritingStrategy $write */
     private $write;
 
-    public function __construct()
+    public function __construct($writer_auto_detect = true)
     {
         $this->setAngle(0);
-        $this->write = WriteFactory::getWriteStrategy();
+        if($writer_auto_detect){
+            $this->write = WriteFactory::getWriteStrategy();
+        }else{
+            $this->write = new GDWritingStrategy();
+        }
         $this->write->setWriter($this);
     }
 
