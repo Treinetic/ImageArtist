@@ -84,7 +84,7 @@ class Image
         return $this;
     }
 
-    public function getBase64URL($type=IMAGETYPE_PNG){
+    public function getDataURI($type=IMAGETYPE_PNG){
         ob_start();
         $this->convertTo($type);
         $base64 = base64_encode(ob_get_clean());
@@ -150,7 +150,7 @@ class Image
      * This method is debugging purposes only
      * */
     public function dump(){
-        $url = $this->getBase64URL(IMAGETYPE_PNG);
+        $url = $this->getDataURI(IMAGETYPE_PNG);
         echo "<body  ><img src='$url' /></body>";
     }
 
