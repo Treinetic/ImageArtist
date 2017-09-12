@@ -1,4 +1,6 @@
 # Changelog
+# 0.2.0 (alpha) Released - 2017-08-12
+- method `getBase64URL` renamed to `getDataURI` in `Image.php` 
 
 # 0.1.0-alpha Released - 2017-08-10
 0.1.0 alpha release with lot of code optimizations and more hidden bug fixes, this include 

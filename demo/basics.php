@@ -66,7 +66,7 @@ $image->save("/home/imal/Desktop/images/newImage.jpg",IMAGETYPE_PNG); //change t
 
 echo "<h1>Other usefull operations</h1>";
 
-$base64URL = $image->getBase64URL();
+$base64URL = $image->getDataURI();
 echo "<img src='$base64URL' />";
 /*
     Image class will not return anything for following methods but in Shape classes it will be a new Image

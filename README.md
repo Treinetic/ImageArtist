@@ -51,7 +51,7 @@ $image->save("./newImage.jpg",IMAGETYPE_PNG);
 
 * Other Usefull Operations
 ```php
-$base64URL = $image->getBase64URL();
+$base64URL = $image->getDataURI();
 /* 
     Image class will return itself for following methods but in Shape classes it will be a new Image 
     to keep the idea of Shape Consistant
