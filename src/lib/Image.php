@@ -3,6 +3,7 @@
 namespace Treinetic\ImageArtist\lib;
 use Treinetic\ImageArtist\lib\Commons\Node;
 use Treinetic\ImageArtist\lib\Commons\Rectangle;
+use Treinetic\ImageArtist\lib\Helpers\ImageHelper;
 use Treinetic\ImageArtist\lib\Text\Color;
 use Treinetic\ImageArtist\lib\Text\Font;
 use Treinetic\ImageArtist\lib\Text\TextBox;
@@ -17,9 +18,11 @@ class Image
 {
 
     private $resource;
+    protected $imageHelper;
 
     public function __construct($image)
     {
+        $this->imageHelper = new ImageHelper();
         $this->resource = $this->getImage($image);
     }
 
@@ -67,7 +70,7 @@ class Image
             $secondImageAfterPlacedBoundry = $boundryRectangle->createRelativeRectangle($secondImageAfterPlacedBoundry);
 
             $copy = imagecreatetruecolor($boundryRectangle->getWidth(), $boundryRectangle->getHeight());
-            $template = $this->createTransparentTemplate($copy,$boundryRectangle->getWidth(),$boundryRectangle->getHeight());
+            $template = $this->imageHelper->createTransparentTemplate($boundryRectangle->getWidth(),$boundryRectangle->getHeight());
             imagecopy($template, $this->getResource(), $currentImageBoundry->getA()->getX(), $currentImageBoundry->getA()->getY(), 0, 0, $this->getWidth(), $this->getHeight());
             imagecopy($template, $image->getResource(), $secondImageAfterPlacedBoundry->getA()->getX(), $secondImageAfterPlacedBoundry->getA()->getY(), 0, 0, $image->getWidth(), $image->getHeight());
             imagedestroy($this->getResource());
@@ -127,7 +130,7 @@ class Image
     }
 
     public function resize($width,$height){
-        $new_image = $this->createTransparentTemplate($this->resource,$width,$height);
+        $new_image = $this->imageHelper->createTransparentTemplate($width,$height);
         imagecopyresampled($new_image, $this->resource, 0, 0, 0, 0, $width, $height, $this->getWidth(), $this->getHeight());
         $this->resource = $new_image;
     }
@@ -139,7 +142,7 @@ class Image
     }
 
     public function setTextBox(TextBox $textBox,$x,$y,$draw_rect =false){
-        $textBox->write($this->getResource(),$x,$y,$textBox->getWidth(),$textBox->getHeight());
+        $textBox->write($this,$x,$y);
         if($draw_rect){
             $pink = imagecolorallocate($this->getResource(), 255, 105, 180);
             imagerectangle($this->getResource(), $x, $y, $x+$textBox->getWidth(), $y+$textBox->getHeight(), $pink);
@@ -149,9 +152,9 @@ class Image
     /*
      * This method is debugging purposes only
      * */
-    public function dump(){
+    public function dump($color = ''){
         $url = $this->getDataURI(IMAGETYPE_PNG);
-        echo "<body  ><img src='$url' /></body>";
+        echo "<body style='background:$color' ><img src='$url' /></body>";
     }
 
     private function getImage($data)
@@ -173,20 +176,13 @@ class Image
             }
             $width = imagesx($resource);
             $height =imagesy($resource);
-            $copy = $this->createTransparentTemplate($resource,$width,$height);
+            $copy = $this->imageHelper->createTransparentTemplate($width,$height);
             imagecopy($copy,$resource , 0, 0, 0, 0, $width, $height);
             return $copy;
         }
     }
 
-    private function createTransparentTemplate($resource,$width,$height){
-        imagesavealpha($resource, true);
-        $copy = imagecreatetruecolor($width,$height);
-        $color = imagecolorallocatealpha($copy, 0, 0, 0, 127);
-        imagefill($copy, 0, 0, $color);
-        imagesavealpha($copy, true);
-        return $copy;
-    }
+
 
 
 }

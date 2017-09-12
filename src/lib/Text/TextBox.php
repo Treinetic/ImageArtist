@@ -12,29 +12,15 @@ class TextBox extends TextWriter
 {
 
 
-    private $width;
-    private $height;
+    
 
     public function __construct($width,$height)
     {
-        $this->width = $width;
-        $this->height= $height;
-    }
-    /**
-     * @return mixed
-     */
-    public function getWidth()
-    {
-        return $this->width;
+        parent::__construct();
+        $this->setWidth($width);
+        $this->setHeight($height);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
 
 
 
