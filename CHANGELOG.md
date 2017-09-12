@@ -1,6 +1,7 @@
 # Changelog
 # 0.2.0 (alpha) Released - 2017-08-12
 - method `getBase64URL` renamed to `getDataURI` in `Image.php` 
+- strategy pattern implemented for textWriting to decide which writer ( gd or imagick ) to be selected, we decided to go for this to support complex unicode rendering
 
 # 0.1.0-alpha Released - 2017-08-10
 0.1.0 alpha release with lot of code optimizations and more hidden bug fixes, this include 

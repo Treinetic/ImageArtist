@@ -20,6 +20,9 @@ class Color
     public static $PURPLE = "PURPLE";
     public static $DARKPINK = "DARKPINK";
 
+    /*
+     * alpha goes 0-127  (0 -> fully visible, 127 -> fully transparent )
+     * */
     public function __construct($R,$G,$B,$Alpha = 0)
     {
         $this->R = $R;
@@ -40,6 +43,12 @@ class Color
                 return new Color(255,20,147);
                 break;
         }
+    }
+
+    public function toString(){
+
+        $val = $this->getAlpha()/127;
+        return "rgba(".$this->R.", ".$this->G.", ".$this->B.", $val)";
     }
 
     /**

@@ -20,6 +20,7 @@ class Font
     public static $NOTOSERIF_BOLDITALIC = "NotoSerif-BoldItalic.ttf";
     public static $NOTOSERIF_BOLD = "NotoSerif-Bold.ttf";
     public static $NOTOSANS_SINHALA_REGULAR = "NotoSerif-Bold.ttf";
+    public static $ISKOLA_POTA = "iskoola-pota.ttf";
 
     public function __construct($font_path)
     {
