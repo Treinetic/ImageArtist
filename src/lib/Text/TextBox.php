@@ -14,9 +14,9 @@ class TextBox extends TextWriter
 
     
 
-    public function __construct($width,$height)
+    public function __construct($width,$height,$writer_auto_detect=true)
     {
-        parent::__construct();
+        parent::__construct($writer_auto_detect);
         $this->setWidth($width);
         $this->setHeight($height);
     }

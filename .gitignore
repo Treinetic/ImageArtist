@@ -2,4 +2,4 @@
 vendor
 test
 img
-demo/index.php
+demo/index*.php
