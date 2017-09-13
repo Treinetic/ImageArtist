@@ -56,6 +56,8 @@ class Image
         return imagesy($this->resource);
     }
 
+    /*-----------------------------------------------*/
+
     public function merge(Image $image,$pos_x, $pos_y){
         $currentImageBoundry = new Rectangle(new Node(0,0),new Node($this->getWidth(),$this->getHeight()));
         $secondImageAfterPlacedBoundry = new Rectangle(new Node($pos_x,$pos_y), new Node($image->getWidth()+$pos_x,$image->getHeight()+$pos_y));
@@ -80,12 +82,32 @@ class Image
         return $this;
     }
 
+    public function rotate($degrees){
+        $pngTransparency = imagecolorallocatealpha( $this->getResource() , 0, 0, 0, 127 );
+        $resource = imagerotate($this->getResource(), $degrees, $pngTransparency);
+        imagedestroy($this->getResource());
+        $this->setResource($resource);
+        return $this;
+    }
+
+    public function flipV(){
+        imageflip($this->getResource(), IMG_FLIP_VERTICAL);
+        return $this;
+    }
+
+    public function flipH(){
+        imageflip($this->getResource(), IMG_FLIP_HORIZONTAL);
+        return $this;
+    }
+
     public function crop($x,$y,$width,$height){
         $resource = imagecrop($this->getResource(), ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]);
         imagedestroy($this->getResource());
         $this->setResource($resource);
         return $this;
     }
+
+    /*----------------------------------------------------------------*/
 
     public function getDataURI($type=IMAGETYPE_PNG){
         ob_start();

@@ -1,4 +1,9 @@
 # Changelog
+# 0.3.0 (alpha) Released - 2017-08-13
+- TextWriting Strategy was previously switched automatically based on imageick and pango avialability, with this version we are providing another method called 'WriteFactory.overrideWriteStrategySelection()' to manually switch between writing strategies
+- 'flipH()', 'flipV()', 'rotate($degrees)' methods added to 'Image.php'
+- For fixing Orientation based on exif value 'OrientationFixer.php' helper added
+
 # 0.2.1 patch Released - 2017-08-12 
 there was a bug in the `Rectangle.php` for the older php versions
 
