@@ -1,6 +1,7 @@
 <?php
 namespace Treinetic\ImageArtist\lib\Text\Write;
 use Treinetic\ImageArtist\lib\Helpers\ImageHelper;
+use Treinetic\ImageArtist\lib\Image;
 use Treinetic\ImageArtist\lib\Text\TextWriter;
 
 /**

@@ -47,7 +47,7 @@ class Color
 
     public function toString(){
 
-        $val = $this->getAlpha()/127;
+        $val = 1 -($this->getAlpha()/127);
         return "rgba(".$this->R.", ".$this->G.", ".$this->B.", $val)";
     }
 
