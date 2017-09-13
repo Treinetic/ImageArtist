@@ -15,7 +15,7 @@ PHP 5.0 >
 
 The package can be installed via composer:
 ``` bash
-$ composer require treinetic/imageartist 0.2.1
+$ composer require treinetic/imageartist 0.3.0
 ```
 
 ## Usage ( Let's Dive In )
@@ -51,6 +51,14 @@ $new_height = $image->getHeight();
 $image->convertTo(IMAGETYPE_PNG);
 $image->save("./newImage.jpg",IMAGETYPE_PNG);
 ```
+
+* Orientation
+```php
+$image->rotate(50); 
+$image->flipV(); // Vertical Flip
+$image->flipH(); // Horizontal Flip
+```
+
 
 * Other Usefull Operations
 ```php

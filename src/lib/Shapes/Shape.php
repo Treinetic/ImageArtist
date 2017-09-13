@@ -18,7 +18,7 @@ class Shape extends Image
      * Following Image methods will be overriden in the Shapes
      * reason for that is, Shape is an image that is true but
      * once that shape is merged with any other image or if you crop it
-     * or if you flip it then that particular shape does not exists anymore
+     * then that particular shape does not exists anymore
      * to avoid that and keep the concept of shape consistant we are not damaging to the existing image
      * instead we are returning a new Image
      *
@@ -33,5 +33,9 @@ class Shape extends Image
         $n = new Image($this->getResource());
         return $n->crop($x,$y,$width,$height);
     }
+
+
+
+
 
 }
