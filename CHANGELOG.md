@@ -1,4 +1,8 @@
 # Changelog
+# 0.2.1 patch Released - 2017-08-12 
+there was a bug in the `Rectangle.php` for the older php versions
+
+
 # 0.2.0 (alpha) Released - 2017-08-12
 - method `getBase64URL` renamed to `getDataURI` in `Image.php` 
 - strategy pattern implemented for textWriting to decide which writer ( gd or imagick ) to be selected, we decided to go for this to support complex unicode rendering
