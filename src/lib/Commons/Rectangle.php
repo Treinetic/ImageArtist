@@ -116,7 +116,7 @@ class Rectangle
 
     public static function findBoundingRectangle($nodes){
         $nodeA_X = $nodeA_Y = PHP_INT_MAX;
-        $nodeC_X = $nodeC_Y = -~PHP_INT_MIN;
+        $nodeC_X = $nodeC_Y = ~PHP_INT_MAX;
         /** @var Node $node */
         for ($i =0; $i < count($nodes); ++$i){
             //find lowest node
