@@ -41,10 +41,10 @@ class ImagickWritingStrategy implements WritingStrategy
 
         $im->setBackgroundColor($background);
 
-        $im->setFont($font->getPath());
-        $im->setPointSize($writer->getSize());
-        $im->setGravity(\Imagick::GRAVITY_WEST); //later we will have to change this
 
+        $im->setFont($font->getPath());
+        $im->setPointSize($writer->getSize() * (0.75));
+        $im->setGravity(\Imagick::GRAVITY_EAST); //later we will have to change this
 
         $width = $writer->getWidth();
         $height = $writer->getHeight();
@@ -53,7 +53,7 @@ class ImagickWritingStrategy implements WritingStrategy
 
         $im->newPseudoImage($width, $height, "pango:" . $text );
         $clut = new \Imagick();
-        $clut->newImage(1, 1, new \ImagickPixel($color->toString()));
+        $clut->newImage(2, 2, new \ImagickPixel($color->toString()));
         $im->clutImage($clut);
         $clut->destroy();
 
