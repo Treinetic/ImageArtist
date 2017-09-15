@@ -1,7 +1,14 @@
-# ImageArtist 0.2.1-alpha
+# ImageArtist 0.3.0-alpha
 ImageArtist is a php gd Wrapper which makes Image manipulation insanely easy, we introduce ImageArtist as Photoshop for php 
 
 This project is an initiative of [Treinetic (Pvt) Ltd](http://www.treinetic.com), Sri Lanka.
+
+
+![Issues](https://img.shields.io/github/issues/Treinetic/ImageArtist.svg)
+[![Software License](https://img.shields.io/badge/license-MIT-blue.svg](LICENSE)
+![Forks](https://img.shields.io/github/forks/Treinetic/ImageArtist.svg)
+![Stars](https://img.shields.io/github/stars/Treinetic/ImageArtist.svg)
+![Twitter](https://img.shields.io/twitter/url/https/github.com/Treinetic/ImageArtist.svg?style=social)
 
 
 ## Requirements
