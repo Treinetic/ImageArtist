@@ -5,7 +5,7 @@ This project is an initiative of [Treinetic (Pvt) Ltd](http://www.treinetic.com)
 
 
 ![Issues](https://img.shields.io/github/issues/Treinetic/ImageArtist.svg)
-[![Software License](https://img.shields.io/badge/license-MIT-blue.svg](LICENSE)
+[![Software License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Forks](https://img.shields.io/github/forks/Treinetic/ImageArtist.svg)
 ![Stars](https://img.shields.io/github/stars/Treinetic/ImageArtist.svg)
 ![Twitter](https://img.shields.io/twitter/url/https/github.com/Treinetic/ImageArtist.svg?style=social)
