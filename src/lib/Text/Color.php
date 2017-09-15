@@ -56,7 +56,7 @@ class Color
      */
     public function getR()
     {
-        return $this->R;
+        return intval($this->R);
     }
 
     /**
@@ -64,7 +64,7 @@ class Color
      */
     public function getG()
     {
-        return $this->G;
+        return intval($this->G);
     }
 
     /**
@@ -72,7 +72,7 @@ class Color
      */
     public function getB()
     {
-        return $this->B;
+        return intval($this->B);
     }
 
     /**

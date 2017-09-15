@@ -10,13 +10,13 @@ namespace Treinetic\ImageArtist\lib\Overlays;
 
 
 
+use Treinetic\ImageArtist\lib\Image;
 use Treinetic\ImageArtist\lib\Shapes\PolygonShape;
 use Treinetic\ImageArtist\lib\Shapes\Square;
 use Treinetic\ImageArtist\lib\Text\Color;
 
 class Overlay extends Square
 {
-
     public function __construct($width,$height,Color $color)
     {
         $im = imagecreate($width, $height);
