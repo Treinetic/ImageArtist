@@ -87,7 +87,7 @@ $triangle->build();
 ```
 
 <p align="center">
-  <img width="400" src="/../images/img/triangle.png"/>
+  <img width="400" src="https://raw.githubusercontent.com/Treinetic/ImageArtist/images/img/triangle.png"/>
 </p>
 
 * Create **Create Custom Shape**, lets see how we can make a nice Pentagon
@@ -103,7 +103,7 @@ $pentagon->push(new Node(25,50, Node::$PERCENTAGE_METRICS));
 $pentagon->build();
 ```
 <p align="center">
-<img width="400" src="/../images/img/polygon.png"/>
+<img width="400" src="https://raw.githubusercontent.com/Treinetic/ImageArtist/images/img/polygon.png"/>
 </p>
 
 * Lets **Merge Two Triangles** 
@@ -130,7 +130,7 @@ $img->scale(70);
 ```
 
 <p align="center">
-<img src="/../images/img/merge.png"/>
+<img src="https://raw.githubusercontent.com/Treinetic/ImageArtist/images/img/merge.png"/>
 </p>
 
 * Let's Do Some Photoshop Shall we ? **Create a Facebook cover**
@@ -156,7 +156,7 @@ $img->dump(); //development purposes only
 ```
 
 <p align="center">
-<img src="/../images/img/cover.png"/>
+<img src="https://raw.githubusercontent.com/Treinetic/ImageArtist/images/img/cover.png"/>
 </p>
 
 
