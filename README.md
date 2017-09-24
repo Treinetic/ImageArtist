@@ -1,4 +1,4 @@
-# ImageArtist 0.3.1-beta
+# ImageArtist 1.0.0
 
 ImageArtist is a php gd Wrapper which makes Image manipulation insanely easy, we introduce ImageArtist as Photoshop for php 
 
@@ -23,7 +23,7 @@ PHP 5.0 >
 
 The package can be installed via composer:
 ``` bash
-$ composer require treinetic/imageartist 0.3.1
+$ composer require treinetic/imageartist
 ```
 
 ## Usage ( Let's Dive In )

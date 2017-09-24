@@ -1,4 +1,7 @@
 # Changelog
+# 1.0.0 (Ready For The World) - 2017-09-24
+- We feel we are stable enough go live.
+
 # 0.3.1 (beta) Released - 2017-09-24
 - Bug fixed on Text angles, both in Imagick Writing Strategy as well as GDWritingStrategy
 - More minor improvements, I think we are ready for the first release version of ImageArtist :) 
