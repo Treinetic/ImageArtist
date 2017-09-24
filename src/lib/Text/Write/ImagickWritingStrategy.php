@@ -1,5 +1,6 @@
 <?php
 namespace Treinetic\ImageArtist\lib\Text\Write;
+use Treinetic\ImageArtist\lib\Helpers\GDUtils;
 use Treinetic\ImageArtist\lib\Helpers\ImageHelper;
 use Treinetic\ImageArtist\lib\Image;
 use Treinetic\ImageArtist\lib\Text\Color;
@@ -43,13 +44,14 @@ class ImagickWritingStrategy implements WritingStrategy
 
 
         $im->setFont($font->getPath());
-        $im->setPointSize($writer->getSize() * (0.75));
+        $im->setPointSize($writer->getSize());
         $im->setGravity(\Imagick::GRAVITY_EAST); //later we will have to change this
 
         $width = $writer->getWidth();
         $height = $writer->getHeight();
         $text = $writer->getText();
         $margin = $writer->getMargin();
+        $angle = $writer->getAngle();
 
         $im->newPseudoImage($width, $height, "pango:" . $text );
         $clut = new \Imagick();
@@ -67,7 +69,16 @@ class ImagickWritingStrategy implements WritingStrategy
         imagedestroy($image);
         imagedestroy($template);
 
-        return $img->merge($text,$margin,$margin);
+        $img = $img->merge($text,$margin,$margin);
+
+        if($angle != 0){
+            $pngTransparency = imagecolorallocatealpha($img->getResource() , 0, 0, 0, 127 );
+            $resource = imagerotate($img->getResource(), $angle, $pngTransparency);
+            $img = new Image($resource);
+            imagedestroy($resource);
+        }
+
+        return $img;
     }
 
 
