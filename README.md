@@ -2,7 +2,7 @@
 
 ImageArtist is a php gd Wrapper which makes Image manipulation insanely easy, we introduce ImageArtist as Photoshop for php 
 
-This project is an initiative of [Treinetic (Pvt) Ltd](http://www.treinetic.com), Sri Lanka.
+This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka. Contact us via info@treinetic.com and get your project done by the experts.
 
 
 ![Issues](https://img.shields.io/github/issues/Treinetic/ImageArtist.svg)
