@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Treinetic\\ImageArtist\\": "src"
+      "Treinetic\\ImageArtist\\": "src/"
     }
   },
   "scripts": {
