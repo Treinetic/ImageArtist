@@ -23,7 +23,8 @@
     "scrutinizer/ocular": "~1.1"
   },
   "require": {
-    "php": ">=5.5.0"
+    "php": ">=5.5.0",
+    "ext-gd": "*"
   },
   "autoload": {
     "psr-4": {
