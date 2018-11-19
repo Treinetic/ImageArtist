@@ -26,7 +26,13 @@ class GDUtils
     {
         $re = '/\((.*?)\s/';
         $gdinfo = self::getGDInfo();
-        preg_match_all($re, $gdinfo["GD Version"], $matches, PREG_SET_ORDER, 0);
+        $version = $gdinfo["GD Version"];
+
+        if (floatval($version) != 0) {
+            return floatval($version);
+        }
+
+        preg_match_all($re, $version, $matches, PREG_SET_ORDER, 0);
         return doubleval($matches[0][1]);
     }
 
