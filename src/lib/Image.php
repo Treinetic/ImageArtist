@@ -101,9 +101,18 @@ class Image
     }
 
     public function crop($x,$y,$width,$height){
-        $resource = imagecrop($this->getResource(), ['x' => $x, 'y' => $y, 'width' => $width, 'height' => $height]);
+        //CREATE NEW IMAGE BASED ON WIDTH AND HEIGHT OF SROUCE IMAGE
+        $bg = imagecreatetruecolor($width, $height);
+        $transparent = imagecolorallocatealpha($bg, 0, 0, 0, 127);
+        imagealphablending($bg, false);
+        imagesavealpha($bg, true);
+        imagefill($bg, 0, 0, $transparent);
+
+        //SAVE TRANSPARENCY AMD FILL DESTINATION IMAGE
+        imagecopy($bg, $this->getResource(), 0, 0, $x, $y, $width, $height);
         imagedestroy($this->getResource());
-        $this->setResource($resource);
+        $this->setResource($bg);
+
         return $this;
     }
 
