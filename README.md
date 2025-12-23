@@ -8,6 +8,7 @@ This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka.
 [![Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 ![Forks](https://img.shields.io/github/forks/Treinetic/ImageArtist.svg?style=flat-square)
 ![Stars](https://img.shields.io/github/stars/Treinetic/ImageArtist.svg?style=flat-square)
+![Twitter](https://img.shields.io/twitter/url/https/github.com/Treinetic/ImageArtist.svg?style=social)
 
 ## Requirements
 
@@ -66,6 +67,10 @@ $triangle->build();
 $triangle->save("./triangle.png", IMAGETYPE_PNG);
 ```
 
+<p align="center">
+  <img width="400" src="https://raw.githubusercontent.com/Treinetic/ImageArtist/images/img/triangle.png"/>
+</p>
+
 ### Advanced Merging & Overlays
 
 ```php
@@ -98,6 +103,10 @@ $img->setTextBox($textBox, ($img->getWidth() - $textBox->getWidth()) / 2, $img->
 
 $img->dump(); // Output directly to browser
 ```
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/Treinetic/ImageArtist/images/img/cover.png"/>
+</p>
 
 ## Contributing
 
