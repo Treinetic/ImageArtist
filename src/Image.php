@@ -18,6 +18,7 @@ class Image
 {
 
     private $resource;
+    private $type;
     protected $imageHelper;
 
     public function __construct($image)
@@ -209,7 +210,7 @@ class Image
             $this->type = $info[2];
             if ($this->type == IMAGETYPE_JPEG) {
                 return imagecreatefromjpeg($data);
-            } else if ($type == IMAGETYPE_GIF) {
+            } else if ($this->type == IMAGETYPE_GIF) {
                 return imagecreatefromgif($data);
             } else {
                 return imagecreatefrompng($data);
