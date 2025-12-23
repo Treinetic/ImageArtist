@@ -17,6 +17,8 @@ This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka.
 | **Fluent API** | Chained methods for intuitive image manipulation (`scale()->crop()->save()`). |
 | **Shapes** | Built-in support for Triangles, Polygons, Circles, and Squares. |
 | **Text Overlays** | Add multi-line text with custom fonts, colors, and positioning. |
+| **Layer System** | **New:** Non-destructive editing with stacks, opacity control, and visibility toggles. |
+| **Filters & Effects** | **New:** Apply standard filters (Grayscale, Blur, Brightness) fluently. |
 | **Smart Merging** | Merge multiple images, shapes, or overlays with alpha blending support. |
 | **Geometric Helpers** | Easy coordinate and size calculations. |
 | **Zero Dependencies** | Lightweight, relying primarily on the standard GD extension. |
