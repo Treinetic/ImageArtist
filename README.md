@@ -33,23 +33,21 @@ This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka.
 
 ### 1. System Dependencies
 
-Ensure you have the GD extension installed on your system.
+This library requires the **GD Extension** enabled in your environment.
+
+**Docker (Dockerfile)**
+```dockerfile
+RUN docker-php-ext-install gd
+```
 
 **Ubuntu / Debian**
 ```bash
-sudo apt-get update
-sudo apt-get install php8.2-gd
+sudo apt-get install php-gd
 ```
 
 **Alpine Linux**
 ```bash
-apk add php82-gd
-```
-
-**macOS (Homebrew)**
-```bash
-brew install php
-# GD is usually included, verify with php -m | grep gd
+apk add php-gd
 ```
 
 ### 2. Composer
