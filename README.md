@@ -1,6 +1,6 @@
 # ImageArtist 2.0.0
 
-ImageArtist is a modern PHP library for easy image manipulation using the GD extension. Think of it as a fluent, cleaner API for GD.
+ImageArtist is a modern PHP library for easy image manipulation using the GD extension. Think of it as a fluent, cleaner API for GD. It simplifies complex tasks like shapes, text overlays, and merging.
 
 This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka.
 
@@ -9,6 +9,17 @@ This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka.
 ![Forks](https://img.shields.io/github/forks/Treinetic/ImageArtist.svg?style=flat-square)
 ![Stars](https://img.shields.io/github/stars/Treinetic/ImageArtist.svg?style=flat-square)
 ![Twitter](https://img.shields.io/twitter/url/https/github.com/Treinetic/ImageArtist.svg?style=social)
+
+## Features
+
+| Feature | Description |
+| :--- | :--- |
+| **Fluent API** | Chained methods for intuitive image manipulation (`scale()->crop()->save()`). |
+| **Shapes** | Built-in support for Triangles, Polygons, Circles, and Squares. |
+| **Text Overlays** | Add multi-line text with custom fonts, colors, and positioning. |
+| **Smart Merging** | Merge multiple images, shapes, or overlays with alpha blending support. |
+| **Geometric Helpers** | Easy coordinate and size calculations. |
+| **Zero Dependencies** | Lightweight, relying primarily on the standard GD extension. |
 
 ## Requirements
 
@@ -19,6 +30,29 @@ This project is an initiative of Treinetic (Pvt) Ltd, Sri Lanka.
 - `ext-imagick` (Required for advanced features in future versions)
 
 ## Installation
+
+### 1. System Dependencies
+
+Ensure you have the GD extension installed on your system.
+
+**Ubuntu / Debian**
+```bash
+sudo apt-get update
+sudo apt-get install php8.2-gd
+```
+
+**Alpine Linux**
+```bash
+apk add php82-gd
+```
+
+**macOS (Homebrew)**
+```bash
+brew install php
+# GD is usually included, verify with php -m | grep gd
+```
+
+### 2. Composer
 
 Install the package via composer:
 
@@ -57,6 +91,10 @@ use Treinetic\ImageArtist\Commons\Node;
 
 // Create a Triangle from an image
 $triangle = new Triangle("./city.jpg");
+// ... rest of the example
+```
+
+```php
 $triangle->scale(60);
 // Set points (Percentage or Pixels)
 $triangle->setPointA(20, 20, true);
@@ -82,7 +120,10 @@ use Treinetic\ImageArtist\Text\Color;
 use Treinetic\ImageArtist\Text\Font;
 
 $img = new Image("./background.jpg");
+// ... rest of the example
+```
 
+```php
 // Add an overlay
 $overlay = new Overlay($img->getWidth(), $img->getHeight(), new Color(0, 0, 0, 80));
 $img->merge($overlay, 0, 0);
