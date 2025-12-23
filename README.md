@@ -112,6 +112,9 @@ $triangle->save("./triangle.png", IMAGETYPE_PNG);
 
 ### Advanced Merging & Overlays
 
+> [!TIP]
+> **New:** Detailed documentation for Text and Overlays is available in [docs/text.md](docs/text.md).
+
 ```php
 use Treinetic\ImageArtist\Image;
 use Treinetic\ImageArtist\Overlays\Overlay;

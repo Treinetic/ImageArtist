@@ -14,22 +14,26 @@ class Asset
     {
     }
 
-    public static function getAssetInstance(){
-        if(self::$asset == null){
+    public static function getAssetInstance()
+    {
+        if (self::$asset == null) {
             self::$asset = new Asset();
         }
         return self::$asset;
     }
 
-    public function getBasePath(){
-        return __DIR__."/../../resources";
+    public function getBasePath()
+    {
+        return __DIR__ . "/../resources";
     }
 
-    public function getAsset($name){
-        return $this->getBasePath()."/".$name;
+    public function getAsset($name)
+    {
+        return $this->getBasePath() . "/" . $name;
     }
 
-    public function getFontAsset($name){
-        return $this->getBasePath()."/Fonts/".$name;
+    public function getFontAsset($name)
+    {
+        return $this->getBasePath() . "/Fonts/" . $name;
     }
 }
