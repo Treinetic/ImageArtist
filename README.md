@@ -146,7 +146,12 @@ $textBox->setText("We Are Team Treinetic");
 
 $img->setTextBox($textBox, ($img->getWidth() - $textBox->getWidth()) / 2, $img->getHeight() * (5/7));
 
-$img->dump(); // Output directly to browser
+// Output directly to browser (ImageArtist 1.0 style)
+$img->dump(); 
+
+// For modern usage, see new features:
+// - [Layers System](docs/layers.md)
+// - [Filters & Effects](docs/filters.md)
 ```
 
 <p align="center">
