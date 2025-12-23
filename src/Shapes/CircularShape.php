@@ -34,7 +34,7 @@ class CircularShape extends Shape implements Shapable
     {
         // by putting the conditins here as well gives users easily override setDefaults method
         // without worrynig about the conditions
-        if(empty($this->major_axis) || empty($this->minor_axis) || empty($this->center)){
+        if (empty($this->major_axis) || empty($this->minor_axis) || empty($this->center)) {
             $this->setDefaults();
         }
         $this->cropCircle();
@@ -58,46 +58,105 @@ class CircularShape extends Shape implements Shapable
 
     private function cropCircle()
     {
+        // 1. Setup dimensions (Supersampling 2x for antialiasing)
+        $superSampleFactor = 2; // Higher is smoother, 2 is usually sufficient
 
-        $width = $this->major_axis * 2;
-        $height = $this->minor_axis * 2;
+        $targetWidth = $this->major_axis * 2;
+        $targetHeight = $this->minor_axis * 2;
+
+        $superWidth = $targetWidth * $superSampleFactor;
+        $superHeight = $targetHeight * $superSampleFactor;
+
         $pointX = $this->center->getX() - $this->major_axis;
         $pointY = $this->center->getY() - $this->minor_axis;
 
-        // Intializes destination image
-        $dst_img = imagecreatetruecolor($width, $height);
-        imagecopy($dst_img, $this->getResource(), 0, 0, $pointX, $pointY, $width, $height);
+        // 2. Create the Supersampled Working Canvas
+        $workImg = imagecreatetruecolor($superWidth, $superHeight);
 
-        // Create a black image with a transparent ellipse, and merge with destination
-        $mask = imagecreatetruecolor($width, $height);
-        $maskTransparent = imagecolorallocate($mask, 255, 0, 255);
-        imagecolortransparent($mask, $maskTransparent);
-        imagefilledellipse($mask, $width / 2, $height / 2, $width, $height, $maskTransparent);
-        imagecopymerge($dst_img, $mask, 0, 0, 0, 0, $width, $height, 100);
+        // Enable proper alpha handling for the working canvas
+        imagealphablending($workImg, false);
+        imagesavealpha($workImg, true);
 
-        // Fill each corners of destination image with transparency
-        $dstTransparent = imagecolorallocate($dst_img, 255, 0, 255);
-        imagefill($dst_img, 0, 0, $dstTransparent);
-        imagefill($dst_img, $width - 1, 0, $dstTransparent);
-        imagefill($dst_img, 0, $height - 1, $dstTransparent);
-        imagefill($dst_img, $width - 1, $height - 1, $dstTransparent);
-        imagecolortransparent($dst_img, $dstTransparent);
+        // Fill with transparent background
+        $transparent = imagecolorallocatealpha($workImg, 255, 255, 255, 127);
+        imagefilledrectangle($workImg, 0, 0, $superWidth, $superHeight, $transparent);
 
-        // destroy old resource
+        // 3. Copy source image to Working Canvas (Scaled Up)
+        // We use imagecopyresampled to copy source -> 2x canvas
+        imagecopyresampled(
+            $workImg,           // Dest
+            $this->getResource(),  // Src
+            0,
+            0,               // Dst X, Y
+            $pointX,
+            $pointY,   // Src X, Y
+            $superWidth,
+            $superHeight, // Dst W, H
+            $targetWidth,
+            $targetHeight // Src W, H (taking 1:1 from source section)
+        );
+
+        // 4. MASKING (at 2x resolution)
+
+        $cutoutMask = imagecreatetruecolor($superWidth, $superHeight);
+        $pink = imagecolorallocate($cutoutMask, 255, 0, 255); // Color to be removed (Transparent Key)
+        imagefilledrectangle($cutoutMask, 0, 0, $superWidth, $superHeight, $pink);
+
+        $transparentHole = imagecolorallocate($cutoutMask, 0, 0, 0); // Color doesn't matter (Black), represents the Shape
+        imagecolortransparent($cutoutMask, $transparentHole); // Define hole as transparent key
+
+        // Anti-alias the shape drawing on the mask
+        if (function_exists('imageantialias')) {
+            imageantialias($cutoutMask, true);
+        }
+
+        imagefilledellipse($cutoutMask, $superWidth / 2, $superHeight / 2, $superWidth, $superHeight, $transparentHole);
+
+        // Merge Cutout onto Work Image
+        // This paints "Pink" over everything OUTSIDE the circle.
+        imagecopymerge($workImg, $cutoutMask, 0, 0, 0, 0, $superWidth, $superHeight, 100);
+
+        // NOW, make Pink transparent on the Work Image.
+        imagecolortransparent($workImg, $pink);
+
+
+        // 6. Resample Down to Target (This creates the Antialiasing!)
+        $finalImg = imagecreatetruecolor($targetWidth, $targetHeight);
+        imagealphablending($finalImg, false);
+        imagesavealpha($finalImg, true);
+        $finalTransparent = imagecolorallocatealpha($finalImg, 255, 255, 255, 127);
+        imagefilledrectangle($finalImg, 0, 0, $targetWidth, $targetHeight, $finalTransparent);
+
+        imagecopyresampled(
+            $finalImg,
+            $workImg,
+            0,
+            0,
+            0,
+            0,
+            $targetWidth,
+            $targetHeight,
+            $superWidth,
+            $superHeight
+        );
+
+        // Cleanup
+        imagedestroy($workImg);
+        imagedestroy($cutoutMask);
         imagedestroy($this->getResource());
 
-        // set new resource created
-        $this->setResource($dst_img);
+        $this->setResource($finalImg);
         return $this;
     }
 
-    function setDefaults(){
-        if(empty($this->major_axis) || empty($this->minor_axis)){
-            $this->major_axis = $this->getWidth()/2;
-            $this->minor_axis = $this->getHeight()/2;
+    function setDefaults()
+    {
+        if (empty($this->major_axis) || empty($this->minor_axis)) {
+            $this->major_axis = $this->getWidth() / 2;
+            $this->minor_axis = $this->getHeight() / 2;
         }
-        if(empty($this->center)){
-            $this->center = new Node($this->getWidth()/2, $this->getHeight()/2);
+        if (empty($this->center)) {
+            $this->center = new Node($this->getWidth() / 2, $this->getHeight() / 2);
         }
     }
 }

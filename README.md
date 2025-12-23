@@ -82,6 +82,9 @@ $image->save("./newImage.jpg", IMAGETYPE_PNG);
 
 ### Shape & Attributes
 
+> [!TIP]
+> **New:** Detailed documentation and examples for all shapes are available in only [docs/shapes.md](docs/shapes.md).
+
 ```php
 use Treinetic\ImageArtist\Image;
 use Treinetic\ImageArtist\Shapes\Triangle;
