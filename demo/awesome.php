@@ -7,18 +7,18 @@
  */
 
 
-use \Treinetic\ImageArtist\lib\Shapes\Triangle;
-use \Treinetic\ImageArtist\lib\Shapes\PolygonShape;
-use \Treinetic\ImageArtist\lib\Commons\Node;
-use \Treinetic\ImageArtist\lib\Text\Color;
-use \Treinetic\ImageArtist\lib\Overlays\Overlay;
-use \Treinetic\ImageArtist\lib\Shapes\CircularShape;
-use \Treinetic\ImageArtist\lib\Text\TextBox;
-use \Treinetic\ImageArtist\lib\Text\Font;
+use \Treinetic\ImageArtist\Shapes\Triangle;
+use \Treinetic\ImageArtist\Shapes\PolygonShape;
+use \Treinetic\ImageArtist\Commons\Node;
+use \Treinetic\ImageArtist\Text\Color;
+use \Treinetic\ImageArtist\Overlays\Overlay;
+use \Treinetic\ImageArtist\Shapes\CircularShape;
+use \Treinetic\ImageArtist\Text\TextBox;
+use \Treinetic\ImageArtist\Text\Font;
 
 require('../vendor/autoload.php');
 
-/** @var \Treinetic\ImageArtist\lib\Image $img */
+/** @var \Treinetic\ImageArtist\Image $img */
 
 
 $triangle = new Triangle("./city.jpg");

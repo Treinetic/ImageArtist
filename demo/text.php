@@ -6,15 +6,15 @@
  * Time: 9:30 PM
  */
 
-use Treinetic\ImageArtist\lib\PolygonShape;
-use Treinetic\ImageArtist\lib\Text\TextBox;
-use Treinetic\ImageArtist\lib\Text\Color;
-use Treinetic\ImageArtist\lib\Text\Font;
-use Treinetic\ImageArtist\lib\Overlays\Overlay;
-use Treinetic\ImageArtist\lib\Image;
-use Treinetic\ImageArtist\lib\Text\Write\WriteFactory;
-use Treinetic\ImageArtist\lib\Text\Write\GDWritingStrategy;
-use Treinetic\ImageArtist\lib\Text\Write\ImagickWritingStrategy;
+use Treinetic\ImageArtist\PolygonShape;
+use Treinetic\ImageArtist\Text\TextBox;
+use Treinetic\ImageArtist\Text\Color;
+use Treinetic\ImageArtist\Text\Font;
+use Treinetic\ImageArtist\Overlays\Overlay;
+use Treinetic\ImageArtist\Image;
+use Treinetic\ImageArtist\Text\Write\WriteFactory;
+use Treinetic\ImageArtist\Text\Write\GDWritingStrategy;
+use Treinetic\ImageArtist\Text\Write\ImagickWritingStrategy;
 
 require('../vendor/autoload.php');
 

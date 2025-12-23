@@ -9,12 +9,12 @@
 //require_once "lib/Shapes.php";
 //require_once "lib/Image.php";
 //require_once "lib/Node.php";
-use Treinetic\ImageArtist\lib\PolygonShape;
-use Treinetic\ImageArtist\lib\Text\TextBox;
-use Treinetic\ImageArtist\lib\Text\Color;
-use Treinetic\ImageArtist\lib\Text\Font;
-use Treinetic\ImageArtist\lib\Overlays\Overlay;
-use Treinetic\ImageArtist\lib\Image;
+use Treinetic\ImageArtist\PolygonShape;
+use Treinetic\ImageArtist\Text\TextBox;
+use Treinetic\ImageArtist\Text\Color;
+use Treinetic\ImageArtist\Text\Font;
+use Treinetic\ImageArtist\Overlays\Overlay;
+use Treinetic\ImageArtist\Image;
 require('../vendor/autoload.php');
 
 /** @var $image Image $traingle_one */
