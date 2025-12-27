@@ -1,1 +1,1 @@
-{"version":2,"defects":[],"times":{"Tests\\Unit\\ImageTest::test_can_instantiate_image_class":0.005,"Tests\\Unit\\ImageTest::test_image_width_and_height":0}}
+{"version":2,"defects":{"Tests\\Unit\\FeatureTest::test_text_box_creation":8},"times":{"Tests\\Unit\\ImageTest::test_can_instantiate_image_class":0,"Tests\\Unit\\ImageTest::test_image_width_and_height":0,"Tests\\Unit\\FeatureTest::test_can_apply_filters":0.005,"Tests\\Unit\\FeatureTest::test_layer_system_flattening":0.002,"Tests\\Unit\\FeatureTest::test_text_box_creation":0.004}}

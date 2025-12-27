@@ -1,3 +1,8 @@
+![ImageArtist Banner](./readme_banner.jpg)
+
+Try out before you actually use it 
+`docker run --pull always -p 9090:80 treineticprojects/demo_opensource:latest`
+
 # ImageArtist 2.0.0
 
 ImageArtist is a modern PHP library for easy image manipulation using the GD extension. Think of it as a fluent, cleaner API for GD. It simplifies complex tasks like shapes, text overlays, and merging.
