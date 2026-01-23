@@ -144,6 +144,8 @@ class Image
             imagegif($this->resource, $filename);
         } elseif ($type == IMAGETYPE_PNG) {
             imagepng($this->resource, $filename);
+        } elseif ($type == IMAGETYPE_WEBP) {
+            imagewebp($this->resource, $filename);
         }
     }
 
@@ -155,6 +157,8 @@ class Image
             imagegif($this->resource);
         } elseif ($type == IMAGETYPE_PNG) {
             imagepng($this->resource);
+        } elseif ($type == IMAGETYPE_WEBP) {
+            imagewebp($this->resource);
         }
     }
 
@@ -212,6 +216,8 @@ class Image
                 return imagecreatefromjpeg($data);
             } else if ($this->type == IMAGETYPE_GIF) {
                 return imagecreatefromgif($data);
+            } else if ($this->type == IMAGETYPE_WEBP) {
+                return imagecreatefromwebp($data);
             } else {
                 return imagecreatefrompng($data);
             }
